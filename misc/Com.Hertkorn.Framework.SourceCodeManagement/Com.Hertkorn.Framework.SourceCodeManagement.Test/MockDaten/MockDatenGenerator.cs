@@ -22,17 +22,16 @@ namespace Com.Hertkorn.Framework.SourceCodeManagement.Test.MockDaten
                 return new MockSolution(
                     solutionFile,
                     new List<ISolutionProjectInfo> {                       
-                        // SolutionFolder werden ignoriert!
                         new MockSolution.Project("Faces.Www", "{CB3BE0A3-3652-41DC-A29F-2769669EF47C}", "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}", @"Faces.Www\Faces.Www.csproj"),
-                        // new MockSolution.Project("_Types", "{D92BC820-F69D-4AE0-9CE0-8563F226BBBF}", "{2150E333-8FDC-42A3-9474-1A3956D46DE8}", "_Types"),
-                        // new MockSolution.Project("_Framework", "{9BA3B999-323A-46B5-B43B-662407BA2DF4}", "{2150E333-8FDC-42A3-9474-1A3956D46DE8}", "_Framework"),
+                        new MockSolution.Project("_Types", "{D92BC820-F69D-4AE0-9CE0-8563F226BBBF}", "{2150E333-8FDC-42A3-9474-1A3956D46DE8}", "_Types"),
+                        new MockSolution.Project("_Framework", "{9BA3B999-323A-46B5-B43B-662407BA2DF4}", "{2150E333-8FDC-42A3-9474-1A3956D46DE8}", "_Framework"),
                         new MockSolution.Project("De.Hbv.Infrastructure.Faces.ServiceTypes", "{BB68C16C-6E65-4953-82DD-7D117F724C84}", "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}", @"..\De.Hbv.Infrastructure\Faces\ServiceTypes\De.Hbv.Infrastructure.Faces.ServiceTypes.csproj"),
-                        // new MockSolution.Project("Services", "{171B7942-D0DA-44EB-9220-D09082707BCF}", "{2150E333-8FDC-42A3-9474-1A3956D46DE8}", "Services"),
+                        new MockSolution.Project("Services", "{171B7942-D0DA-44EB-9220-D09082707BCF}", "{2150E333-8FDC-42A3-9474-1A3956D46DE8}", "Services"),
                         new MockSolution.Project("De.Hbv.Infrastructure.Faces.Services.Gebaeude", "{F4C0CEE0-EF06-4871-A162-63E56FA31A13}", "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}", @"..\De.Hbv.Infrastructure\Faces\Services\Gebaeude\De.Hbv.Infrastructure.Faces.Services.Gebaeude.csproj"),
                         new MockSolution.Project("De.Hbv.Infrastructure.Faces.Services.Mitarbeiter", "{31528CC8-3CF8-4C13-83DE-FB5572D274A7}", "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}", @"..\De.Hbv.Infrastructure\Faces\Services\Mitarbeiter\De.Hbv.Infrastructure.Faces.Services.Mitarbeiter.csproj"),
                         new MockSolution.Project("De.Hbv.Infrastructure.Faces.Services.Mock", "{8666243E-3D76-4691-A50D-346CBC5058B3}", "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}", @"..\De.Hbv.Infrastructure\Faces\Services\Mock\De.Hbv.Infrastructure.Faces.Services.Mock.csproj"),
                         new MockSolution.Project("De.Hbv.Framework.Wcf", "{CF02ADEE-C33E-47FA-B877-08F593763F60}", "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}", @"..\De.Hbv.Framework\Wcf\De.Hbv.Framework.Wcf\De.Hbv.Framework.Wcf.csproj"),
-                        // new MockSolution.Project("_Mock", "{7BD3A39F-65CE-46BB-B664-AB95B38E7DEE}", "{2150E333-8FDC-42A3-9474-1A3956D46DE8}", "_Mock"),
+                        new MockSolution.Project("_Mock", "{7BD3A39F-65CE-46BB-B664-AB95B38E7DEE}", "{2150E333-8FDC-42A3-9474-1A3956D46DE8}", "_Mock"),
                         new MockSolution.Project("De.Hbv.Framework.Helper", "{70EE87C0-4295-4681-97FB-1E9549549B8B}", "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}", @"..\De.Hbv.Framework\Helper\Helper\De.Hbv.Framework.Helper.csproj")
                     },
                     rawContent,

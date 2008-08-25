@@ -41,7 +41,7 @@ namespace Com.Hertkorn.Framework.SourceCodeManagement.VisualStudio
             parseProjectReference(doc);
             parseAssemblyReference(doc);
         }
-
+        
         private void parseAssemblyReference(XDocument doc)
         {
             var assemblyReferenceListe = (from title in doc.Descendants(XNAME_ASSEMBLY_REFERENCE)

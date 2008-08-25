@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDepend.Helpers.FileDirectoryPath", "..\..\externalSources\NDepend.Helpers.FileDirectoryPath.1.0\NDepend.Helpers.FileDirectoryPath\NDepend.Helpers.FileDirectoryPath.csproj", "{680342E7-0F89-473C-A4C4-C67B7DB0EA40}"
-EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Com.Hertkorn.Framework.SourceCodeManagement.vsmdi
@@ -30,10 +28,6 @@ Global
 		{950EFD46-88B8-401E-B4CD-5C952C440B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{950EFD46-88B8-401E-B4CD-5C952C440B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{950EFD46-88B8-401E-B4CD-5C952C440B86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{680342E7-0F89-473C-A4C4-C67B7DB0EA40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{680342E7-0F89-473C-A4C4-C67B7DB0EA40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{680342E7-0F89-473C-A4C4-C67B7DB0EA40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{680342E7-0F89-473C-A4C4-C67B7DB0EA40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

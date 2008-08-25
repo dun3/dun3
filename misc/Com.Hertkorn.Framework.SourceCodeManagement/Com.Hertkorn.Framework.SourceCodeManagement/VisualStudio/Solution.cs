@@ -52,10 +52,6 @@ namespace Com.Hertkorn.Framework.SourceCodeManagement.VisualStudio
                 {
                     m_version = VisualStudioVersion.VS2008;
                 }
-                if (mc[0].Groups[GROUPNAME_VERSION].Value == "9.00")
-                {
-                    m_version = VisualStudioVersion.VS2005;
-                }
             }
         }
 
@@ -81,16 +77,13 @@ namespace Com.Hertkorn.Framework.SourceCodeManagement.VisualStudio
 #warning TODO: Warum hier 5!?
                 if (match.Groups.Count == 5)
                 {
-                    if (match.Groups[GROUPNAME_PROJECT_TYPE].Value != "{2150E333-8FDC-42A3-9474-1A3956D46DE8}")
+                    projectInfoListe.Add(new ProjectSubItem
                     {
-                        projectInfoListe.Add(new ProjectSubItem
-                        {
-                            ProjectTypeGuid = new Guid(match.Groups[GROUPNAME_PROJECT_TYPE].Value),
-                            ProjectName = match.Groups[GROUPNAME_PROJECT_NAME].Value,
-                            RawProjectPath = match.Groups[GROUPNAME_PROJECT_PATH].Value,
-                            ProjectGuid = new Guid(match.Groups[GROUPNAME_PROJECT_GUID].Value)
-                        });
-                    }
+                        ProjectTypeGuid = new Guid(match.Groups[GROUPNAME_PROJECT_TYPE].Value),
+                        ProjectName = match.Groups[GROUPNAME_PROJECT_NAME].Value,
+                        RawProjectPath = match.Groups[GROUPNAME_PROJECT_PATH].Value,
+                        ProjectGuid = new Guid(match.Groups[GROUPNAME_PROJECT_GUID].Value)
+                    });
                 }
             }
             m_projectListe = projectInfoListe;

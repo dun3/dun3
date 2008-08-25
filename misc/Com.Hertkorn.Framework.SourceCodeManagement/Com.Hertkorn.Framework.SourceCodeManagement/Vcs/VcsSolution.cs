@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using Com.Hertkorn.Framework.SourceCodeManagement.SourceTree;
+using System.Linq;
+using System.Text;
 using Com.Hertkorn.Framework.SourceCodeManagement.VisualStudio;
+using Com.Hertkorn.Framework.SourceCodeManagement.SourceTree;
+using System.IO;
 
 namespace Com.Hertkorn.Framework.SourceCodeManagement.Vcs
 {
