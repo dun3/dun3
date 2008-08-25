@@ -1,0 +1,5 @@
+﻿<prebuild>
+  <exec>
+    <executable>C:\IntegrationDependencies\Scripting\resetSvnDirectory.bat</executable>
+  </exec>
+</prebuild>

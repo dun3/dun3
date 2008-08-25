@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Framework.Automap", "Com.Hertkorn.Framework.Automap\Com.Hertkorn.Framework.Automap.csproj", "{AA06E646-DA1A-4255-924F-E374404AD9B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Framework.Automap.Test", "Com.Hertkorn.Framework.Automap.Test\Com.Hertkorn.Framework.Automap.Test.csproj", "{8DA966CF-E96B-4B4F-AF55-CAA761B11471}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Framework.Automap.PerformanceTest", "Com.Hertkorn.Framework.Automap.PerformanceTest\Com.Hertkorn.Framework.Automap.PerformanceTest.csproj", "{CFDCB880-B224-414D-8E02-E20DC70B03D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA06E646-DA1A-4255-924F-E374404AD9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA06E646-DA1A-4255-924F-E374404AD9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA06E646-DA1A-4255-924F-E374404AD9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA06E646-DA1A-4255-924F-E374404AD9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA966CF-E96B-4B4F-AF55-CAA761B11471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA966CF-E96B-4B4F-AF55-CAA761B11471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA966CF-E96B-4B4F-AF55-CAA761B11471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA966CF-E96B-4B4F-AF55-CAA761B11471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFDCB880-B224-414D-8E02-E20DC70B03D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFDCB880-B224-414D-8E02-E20DC70B03D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFDCB880-B224-414D-8E02-E20DC70B03D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFDCB880-B224-414D-8E02-E20DC70B03D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

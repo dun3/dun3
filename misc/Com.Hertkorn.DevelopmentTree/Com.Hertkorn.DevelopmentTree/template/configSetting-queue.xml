@@ -1,0 +1,6 @@
+﻿<triggers>
+  <filterTrigger startTime='01:15' endTime='06:00'>
+    <trigger type='intervalTrigger' seconds='300' />
+  </filterTrigger>
+  <scheduleTrigger time='01:30' buildCondition='ForceBuild' name='Scheduled' />
+</triggers>

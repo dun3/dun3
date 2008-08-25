@@ -1,0 +1,22 @@
+﻿<!DOCTYPE cruisecontrol [
+#foreach($i in $configFileNames)
+  <!ENTITY ${i} SYSTEM "file:test\\${i}.xml">
+#end
+]>
+
+<!-- 
+  Prioritäten: 
+    Aktive Entwicklung 1-100
+  	Infrastructure 100-500
+  	Framework 500-1000
+  	Gelegentliche Entwicklung 1000-2000
+  	Sonstiges 5000-10000
+  	Low Prio 10000-100000
+  	Im Ruhestand 100000
+-->
+
+<cruisecontrol>
+  #foreach($i in $configFileNames)
+  &${i};
+  #end
+</cruisecontrol>

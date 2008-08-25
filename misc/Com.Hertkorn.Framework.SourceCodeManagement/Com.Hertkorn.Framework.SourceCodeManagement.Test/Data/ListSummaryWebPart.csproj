@@ -1,0 +1,74 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17DC98EF-988C-476F-A3F4-3D91BCA97A6F}</ProjectGuid>
+    <ProjectTypeGuids>{593B0543-81F6-4436-BA1E-4747859CAAE2};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>De.Hbv.SharePoint.WebParts</RootNamespace>
+    <AssemblyName>ListSummaryWebPart</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>Properties\BSKHTeamDSigningKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>URL</StartAction>
+    <StartURL>http://localhost/</StartURL>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>URL</StartAction>
+    <StartURL>http://localhost/</StartURL>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="De.Hbv.Framework.InfoCollector, Version=1.0.0.1, Culture=neutral, PublicKeyToken=76139e9454083dd5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\assemblies\De.Hbv.Framework.InfoCollector\1.0.0.1\De.Hbv.Framework.InfoCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="De.Hbv.Framework.InfoCollector.Web, Version=1.0.0.1, Culture=neutral, PublicKeyToken=76139e9454083dd5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\assemblies\De.Hbv.Framework.InfoCollector.Web\1.0.0.1\De.Hbv.Framework.InfoCollector.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="De.Hbv.Framework.LoggingAndExceptionHandling, Version=1.0.0.1, Culture=neutral, PublicKeyToken=76139e9454083dd5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\assemblies\De.Hbv.Framework.LoggingAndExceptionHandling\1.0.0.1\De.Hbv.Framework.LoggingAndExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SharePoint" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ListSummaryWebPart\ListSummaryWebPart.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\BSKHTeamDSigningKey.pfx" />
+    <None Include="ListSummaryWebPart\ListSummaryWebPart.xml" />
+    <None Include="ListSummaryWebPart\ListSummaryWebPart.webpart" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

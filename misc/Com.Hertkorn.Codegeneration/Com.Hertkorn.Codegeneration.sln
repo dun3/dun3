@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Codegeneration.Test", "Com.Hertkorn.Codegeneration.Test\Com.Hertkorn.Codegeneration.Test.csproj", "{28939649-A089-425D-B562-138B487A2569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Codegeneration.Classes", "Com.Hertkorn.Codegeneration.Classes\Com.Hertkorn.Codegeneration.Classes.csproj", "{914CEA0E-D861-43CE-9337-C413E23D3811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Codegeneration.Solutions", "Com.Hertkorn.Codegeneration.Solutions\Com.Hertkorn.Codegeneration.Solutions.csproj", "{71A01113-D43D-43D1-BD9D-FD11F6F85E8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28939649-A089-425D-B562-138B487A2569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28939649-A089-425D-B562-138B487A2569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28939649-A089-425D-B562-138B487A2569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28939649-A089-425D-B562-138B487A2569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914CEA0E-D861-43CE-9337-C413E23D3811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914CEA0E-D861-43CE-9337-C413E23D3811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914CEA0E-D861-43CE-9337-C413E23D3811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914CEA0E-D861-43CE-9337-C413E23D3811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71A01113-D43D-43D1-BD9D-FD11F6F85E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71A01113-D43D-43D1-BD9D-FD11F6F85E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71A01113-D43D-43D1-BD9D-FD11F6F85E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71A01113-D43D-43D1-BD9D-FD11F6F85E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

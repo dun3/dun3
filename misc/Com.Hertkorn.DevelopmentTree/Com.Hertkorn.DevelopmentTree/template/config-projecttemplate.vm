@@ -1,0 +1,53 @@
+﻿<project name="${projectname}-BuildOnly" webURL="http://$ccserverip/ccnet/server/vs2005/project/${projectname}-BuildOnly/ViewLatestBuildReport.aspx" queuePriority="${projectpriority}">
+  <workingDirectory>C:\Integration\\${projectname}</workingDirectory>
+  <artifactDirectory>C:\Integration\\${projectname}\Artifacts</artifactDirectory>
+  <queue>vs2005</queue>
+  <state type='state' directory='C:\Integration' />
+  <triggers>
+    <filterTrigger startTime='01:15' endTime='06:00'>
+      <trigger type='intervalTrigger' seconds='300' />
+    </filterTrigger>
+    <scheduleTrigger time='01:30' buildCondition='ForceBuild' name='Scheduled' />
+  </triggers>
+  
+  <prebuild>
+    <exec>
+      <executable>C:\IntegrationDependencies\Scripting\resetDynamicDirectory.bat</executable>
+      <buildArgs>${workingdirectory}</buildArgs>
+    </exec>
+  </prebuild>
+
+#foreach($i in $checkoutRootListe)
+#beforeall
+  <sourcecontrol type='multi'>
+    <sourceControls>
+#each
+      <svn>
+        <trunkUrl>${i.subversionurl}</trunkUrl>
+        <workingDirectory>${i.targetdirectory}</workingDirectory>
+        <username>tobias.hertkorn</username>
+        <password>Du4nichtlesen</password>
+        <executable>C:\Programme\Subversion\bin\svn.exe</executable>
+      </svn>
+#afterall
+    </sourceControls>
+  </sourcecontrol>
+#end
+
+#foreach($solution in $solutionListe)
+#beforeall
+  <tasks>
+#each
+    <devenv solutionfile="${solution.file}" executable="${solution.exe}" configuration="debug" />
+#afterall
+  </tasks>
+#end
+
+  <publishers>
+    <xmllogger />
+    <exec>
+      <executable>C:\IntegrationDependencies\Scripting\resetDynamicDirectoryAfterException.bat</executable>
+      <buildArgs>${workingdirectory}</buildArgs>
+    </exec>
+  </publishers>
+</project>

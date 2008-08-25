@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0DB4322A-672B-4F44-AA4E-14D7EA38F5B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Hertkorn.Framework.SourceCodeManagement</RootNamespace>
+    <AssemblyName>Com.Hertkorn.Framework.SourceCodeManagement</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Product\ProductSourceStructure.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GlobalTree\ISourceTreeDirectory.cs" />
+    <Compile Include="GlobalTree\ISourceTreeRootDirectory.cs" />
+    <Compile Include="GlobalTree\SourceTree.cs" />
+    <Compile Include="Vcs\ILocalSolutionStructure.cs" />
+    <Compile Include="Vcs\IVcsSolutionInfo.cs" />
+    <Compile Include="Vcs\VcsSolution.cs" />
+    <Compile Include="VisualStudio\IAssemblyReference.cs" />
+    <Compile Include="VisualStudio\IBaseProjectInfo.cs" />
+    <Compile Include="VisualStudio\IBaseSolutionInfo.cs" />
+    <Compile Include="VisualStudio\IProjectInfo.cs" />
+    <Compile Include="VisualStudio\IProjectReferenceInfo.cs" />
+    <Compile Include="VisualStudio\IReference.cs" />
+    <Compile Include="VisualStudio\ISolutionInfo.cs" />
+    <Compile Include="VisualStudio\ISolutionProjectInfo.cs" />
+    <Compile Include="VisualStudio\Project.cs" />
+    <Compile Include="VisualStudio\Solution.cs" />
+    <Compile Include="VisualStudio\VisualStudioVersion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\externalSources\NDepend.Helpers.FileDirectoryPath.1.0\NDepend.Helpers.FileDirectoryPath\NDepend.Helpers.FileDirectoryPath.csproj">
+      <Project>{680342E7-0F89-473C-A4C4-C67B7DB0EA40}</Project>
+      <Name>NDepend.Helpers.FileDirectoryPath</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

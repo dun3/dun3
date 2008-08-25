@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Com.Hertkorn.Codegeneration.Solutions.Solution">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Solution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.Hertkorn.Codegeneration.Solutions.Project">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.Hertkorn.Codegeneration.Solutions.Class">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Com.Hertkorn.Codegeneration.Solutions.Class.Constructor">
+        <TypeIdentifier>
+          <NewMemberFileName>Class.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Com.Hertkorn.Codegeneration.Solutions.Class.Property">
+        <TypeIdentifier>
+          <NewMemberFileName>Class.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Class.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.Hertkorn.Codegeneration.Solutions.Parameter">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Parameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.Hertkorn.Codegeneration.Solutions.ReturnType">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ReturnType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.Hertkorn.Codegeneration.Solutions.ProjectFolder">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAIAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProjectFolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Com.Hertkorn.Codegeneration.Solutions.SolutionFolder">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIQAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SolutionFolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Com.Hertkorn.Codegeneration.Solutions.Visibility">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Visibility.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
