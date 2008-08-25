@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Untitled Page </title>
+
+    <script type="text/javascript" src="jquery-1.2.6-intellisense.js"></script>
+
+    <script type="text/javascript" src="jquery.timers.js"></script>
+
+    <script type="text/javascript">
+			//<![CDATA[
+			$(function() { 
+				//===				
+				$("#uncontrolled-timeout p").oneTime(2000, function() {
+					$(this).html("See?");
+				}).oneTime(5000, "soon", function() {
+					$(this).html("I'm unstoppable");
+				}); 
+				//===
+			});
+			//]]>
+    </script>
+
+</head>
+<body>
+    <h3>
+        Uncontrolled oneTime</h3>
+    <div id="uncontrolled-timeout">
+        <p>
+            I'm gonna change whether you like it or not.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:6797/LogService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" />
+  <xs:import schemaLocation="http://localhost:6797/LogService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:element name="FindLastLogId">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindLastLogIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="FindLastLogIdResult" nillable="true" type="q1:LogIdDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindLastLogIdByIncidentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="incidentId" type="q2:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindLastLogIdByIncidentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="FindLastLogIdByIncidentIdResult" nillable="true" type="q3:LogIdDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLastLogId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="id" nillable="true" type="q4:LogIdDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLastLogIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsLastLogIdResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLastLogIdByIncidentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="incidentId" type="q5:guid" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="id" nillable="true" type="q6:LogIdDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLastLogIdByIncidentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsLastLogIdByIncidentIdResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindSummaryLogItemzByIncidentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="incidentId" type="q7:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindSummaryLogItemzByIncidentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="FindSummaryLogItemzByIncidentIdResult" nillable="true" type="q8:ArrayOfSummaryLogItemDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindLogItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="id" nillable="true" type="q9:LogIdDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindLogItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="FindLogItemResult" nillable="true" type="q10:LogItemDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateLogItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="logItem" nillable="true" type="q11:LogItemDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateLogItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="CreateLogItemResult" nillable="true" type="q12:LogItemDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateExceptionLogItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="exceptionLogItem" nillable="true" type="q13:ExceptionLogItemDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateExceptionLogItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" minOccurs="0" name="CreateExceptionLogItemResult" nillable="true" type="q14:ExceptionLogItemDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

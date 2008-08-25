@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/LogViewerTest.Service.Log.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:6797/LogService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:6797/LogService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:complexType name="LogIdDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LogIdDTO" nillable="true" type="tns:LogIdDTO" />
+  <xs:complexType name="ArrayOfSummaryLogItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SummaryLogItemDTO" nillable="true" type="tns:SummaryLogItemDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSummaryLogItemDTO" nillable="true" type="tns:ArrayOfSummaryLogItemDTO" />
+  <xs:complexType name="SummaryLogItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Incident" type="ser:guid" />
+      <xs:element minOccurs="0" name="Summary" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SummaryLogItemDTO" nillable="true" type="tns:SummaryLogItemDTO" />
+  <xs:complexType name="LogItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Category" type="ser:guid" />
+      <xs:element minOccurs="0" name="Event" type="ser:guid" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Incident" type="ser:guid" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Severity" type="ser:guid" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LogItemDTO" nillable="true" type="tns:LogItemDTO" />
+  <xs:complexType name="ExceptionLogItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Category" type="ser:guid" />
+      <xs:element minOccurs="0" name="Event" type="ser:guid" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="Exception" nillable="true" type="q1:Exception" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Incident" type="ser:guid" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Severity" type="ser:guid" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExceptionLogItemDTO" nillable="true" type="tns:ExceptionLogItemDTO" />
+</xs:schema>

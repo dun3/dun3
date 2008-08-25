@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterNumberGenerator", "PrinterNumberGenerator\PrinterNumberGenerator.csproj", "{D61DCFFD-5202-46C4-A78F-9C544269B9DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrinterNumberGenerator.Test", "PrinterNumberGenerator.Test\PrinterNumberGenerator.Test.csproj", "{4E694FD5-9DB5-4F34-98F7-14CFE379315C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D61DCFFD-5202-46C4-A78F-9C544269B9DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61DCFFD-5202-46C4-A78F-9C544269B9DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61DCFFD-5202-46C4-A78F-9C544269B9DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61DCFFD-5202-46C4-A78F-9C544269B9DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E694FD5-9DB5-4F34-98F7-14CFE379315C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E694FD5-9DB5-4F34-98F7-14CFE379315C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E694FD5-9DB5-4F34-98F7-14CFE379315C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E694FD5-9DB5-4F34-98F7-14CFE379315C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

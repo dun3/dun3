@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-CA" lang="en-CA">
+<head>
+    <title>jQuery Plugin: jQuery Timers</title>   
+
+    <script type="text/javascript" src="jquery-1.2.6-intellisense.js"></script>
+
+    <script type="text/javascript" src="jquery.timers.js"></script>
+
+    <script type="text/javascript">
+			//<![CDATA[
+			$(function() { 
+				//===				
+				$("#uncontrolled-timeout p").oneTime(2000, function() {
+					$(this).html("See?");
+				}).oneTime(5000, "soon", function() {
+					$(this).html("I'm unstoppable");
+				});
+				//===
+			});
+			//]]>
+    </script>
+
+</head>
+<body>
+    <h3>
+        Uncontrolled oneTime</h3>
+    <div id="uncontrolled-timeout">
+        <p>
+            I'm gonna change whether you like it or not.</p>
+    </div>
+</body>
+</html>
