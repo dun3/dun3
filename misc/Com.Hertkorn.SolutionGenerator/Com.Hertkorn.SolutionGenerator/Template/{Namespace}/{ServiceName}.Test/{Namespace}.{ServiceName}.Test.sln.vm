@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "{Namespace}.{ServiceName}", "..\{Namespace}.{ServiceName}\{Namespace}.{ServiceName}.csproj", "{MainProjectGuid}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "{Namespace}.{ServiceName}.Test", "{Namespace}.{ServiceName}.Test.csproj", "{TestProjectGuid}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{MainProjectGuid}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{MainProjectGuid}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{MainProjectGuid}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{MainProjectGuid}.Release|Any CPU.Build.0 = Release|Any CPU
+		{TestProjectGuid}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{TestProjectGuid}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{TestProjectGuid}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{TestProjectGuid}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
