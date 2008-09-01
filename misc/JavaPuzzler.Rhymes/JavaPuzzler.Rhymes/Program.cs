@@ -16,13 +16,13 @@ namespace JavaPuzzler.Rhymes
             StringBuilder word = null;
             switch (rnd.Next(2))
             {
-                case 1: word = new StringBuilder('P'); break; // Does not compile without the break
-                case 2: word = new StringBuilder('G'); break;
+                case 1: word = new StringBuilder('S'); break; // Does not compile without the break
+                case 2: word = new StringBuilder('D'); break;
                 default: word = new StringBuilder('M'); break;
             }
-            word.Append('a');
             word.Append('i');
-            word.Append('n');
+            word.Append('c');
+            word.Append('h');
             Console.WriteLine(word);
 
         }
