@@ -37,15 +37,15 @@ namespace Blog.ReflectionByExpression
             return new EmitAccessor<TTarget, TValue>(propertyName);
         }
 
-        //public static IAccessor CreateExpressionAccessor(Type targetType, string propertyName)
-        //{
-        //    return new ExpressionAccessor(targetType, propertyName);
-        //}
+        public static IAccessor CreateExpressionAccessor(Type targetType, string propertyName)
+        {
+            return new ExpressionAccessor(targetType, propertyName);
+        }
 
-        //public static IAccessor<TValue> CreateExpressionAccessor<TValue>(Type targetType, string propertyName)
-        //{
-        //    return new ExpressionAccessor<TValue>(targetType, propertyName);
-        //}
+        public static IAccessor<TValue> CreateExpressionAccessor<TValue>(Type targetType, string propertyName)
+        {
+            return new ExpressionAccessor<TValue>(targetType, propertyName);
+        }
 
         public static IAccessor<TTarget, TValue> CreateExpressionAccessor<TTarget, TValue>(string propertyName)
         {

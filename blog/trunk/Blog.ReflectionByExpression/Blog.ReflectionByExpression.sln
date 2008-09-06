@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.ReflectionByExpression
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.ReflectionByExpression.PerformanceTest", "Blog.ReflectionByExpression.PerformanceTest\Blog.ReflectionByExpression.PerformanceTest.csproj", "{22DCE289-2E5C-4223-B74F-2FEBBE748076}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.ReflectionByExpression.ToBeReflectedOn", "Blog.ReflectionByExpression.ToBeReflectedOn\Blog.ReflectionByExpression.ToBeReflectedOn.csproj", "{FDD20C68-62B1-436A-9708-02657793DB4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{22DCE289-2E5C-4223-B74F-2FEBBE748076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DCE289-2E5C-4223-B74F-2FEBBE748076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DCE289-2E5C-4223-B74F-2FEBBE748076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD20C68-62B1-436A-9708-02657793DB4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD20C68-62B1-436A-9708-02657793DB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD20C68-62B1-436A-9708-02657793DB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD20C68-62B1-436A-9708-02657793DB4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
