@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.WakeOnLan", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.ArpReverseLookup", "Com.Hertkorn.ArpReverseLookup\Com.Hertkorn.ArpReverseLookup.csproj", "{BC18FC8D-6E6B-44BA-9245-7B317BA29512}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.WakeOnLan.Test", "Com.Hertkorn.WakeOnLan.Test\Com.Hertkorn.WakeOnLan.Test.csproj", "{AAC6CD81-95FA-4999-BF29-5B4B43C0B8E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{BC18FC8D-6E6B-44BA-9245-7B317BA29512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC18FC8D-6E6B-44BA-9245-7B317BA29512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC18FC8D-6E6B-44BA-9245-7B317BA29512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAC6CD81-95FA-4999-BF29-5B4B43C0B8E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC6CD81-95FA-4999-BF29-5B4B43C0B8E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC6CD81-95FA-4999-BF29-5B4B43C0B8E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC6CD81-95FA-4999-BF29-5B4B43C0B8E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

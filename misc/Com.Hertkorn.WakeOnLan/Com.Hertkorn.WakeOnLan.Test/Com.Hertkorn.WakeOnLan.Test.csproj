@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{181FF8B5-8ADF-477E-9812-72B8B29B7729}</ProjectGuid>
+    <ProjectGuid>{AAC6CD81-95FA-4999-BF29-5B4B43C0B8E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Com.Hertkorn.WakeOnLan</RootNamespace>
-    <AssemblyName>Com.Hertkorn.WakeOnLan</AssemblyName>
+    <AssemblyName>Com.Hertkorn.WakeOnLan.Test</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.7.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NUnit\2.4.7\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -45,10 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DO\MacAddress.cs" />
-    <Compile Include="WakeOnLanException.cs" />
-    <Compile Include="WakeOnLanService.cs" />
+    <Compile Include="DO\MacAddressTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Hertkorn.WakeOnLan\Com.Hertkorn.WakeOnLan.csproj">
+      <Project>{181FF8B5-8ADF-477E-9812-72B8B29B7729}</Project>
+      <Name>Com.Hertkorn.WakeOnLan</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

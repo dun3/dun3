@@ -5,59 +5,43 @@ using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.Text.RegularExpressions;
+using Com.Hertkorn.WakeOnLan.DO;
 
 namespace Com.Hertkorn.WakeOnLan
 {
     public class WakeOnLanService
     {
-        public void SendToMac(string mac)
+        public void SendWakeOnLanToMac(string mac)
         {
-            if (!IsMAC(mac)) { throw new ArgumentException("'{0}' does not represent a valid MAC Address", "smac"); }
+            MacAddress address = new MacAddress(mac);
 
-            //Umwandeln der MAC Adresse von String zu byte
-            string[] macSplit = mac.Split(':');
-            byte[] macAdresse = new byte[6];
-
-            for (int x = 0; x < macAdresse.Length; x++)
-            {
-                macAdresse[x] = byte.Parse(macSplit[x], System.Globalization.NumberStyles.HexNumber);
-            }
-
-            WakeOnLan(macAdresse);
+            WakeOnLan(address);
         }
 
-        private static byte[] STARTSIGNAL = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-        public static readonly Regex MAC_ADRESS_PATTERN = new Regex(@"(([a-f]|[0-9]|[A-F]){2}\:){5}([a-f]|[0-9]|[A-F]){2}\b", RegexOptions.Compiled);
+        private static readonly byte[] START_SIGNAL = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 
-        public static bool IsMAC(string mac)
+        private static void WakeOnLan(MacAddress macAddress)
         {
-            return MAC_ADRESS_PATTERN.IsMatch(mac);
-        }
+            // Das WOL Signal wird als Broadcast verschickt.
+            // Es enthält 6x 0xFF, direkt danach folgt 16x die MAC Adresse.
 
-        private static void WakeOnLan(byte[] macAddress)
-        {
-            //Das WOL Signal wird als Broadcast verschickt.
-            //Es enthält 6x den Wert FF, direkt danach folgt 16x die MAC Adresse.
-
-            using (UdpClient wolClient = new UdpClient())
+            using (UdpClient client = new UdpClient())
             {
-                wolClient.Connect(IPAddress.Broadcast, 0);
+                client.Connect(IPAddress.Broadcast, 0);
 
-                //Startsignal 6x(FF) + 16x(Mac-Adresse) = 102bytes
-
-                byte[] WOLSignal = new byte[102];
+                byte[] wolSignal = new byte[6 + MacAddress.MAC_ADDRESS_LENGTH * 16];
 
                 // Startsignal einfügen
-                STARTSIGNAL.CopyTo(WOLSignal, 0);
+                START_SIGNAL.CopyTo(wolSignal, 0);
 
                 // Die Mac-Adresse wird 16x in das WOL Signal angehängt
                 for (int i = 0; i < 16; i++)
                 {
-                    macAddress.CopyTo(WOLSignal, (i + 1) * 6);
+                    macAddress.Address.CopyTo(wolSignal, START_SIGNAL.Length + i * MacAddress.MAC_ADDRESS_LENGTH);
                 }
 
-                //Signal senden
-                wolClient.Send(WOLSignal, WOLSignal.Length);
+                // Signal senden
+                client.Send(wolSignal, wolSignal.Length);
             }
         }
     }
