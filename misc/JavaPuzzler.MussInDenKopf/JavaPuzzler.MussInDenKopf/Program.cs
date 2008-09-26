@@ -9,7 +9,30 @@ namespace JavaPuzzler.MussInDenKopf
     public class Kampagne
     {
         public string Text { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Kampagne k = obj as Kampagne;
+            if (k == null)
+            {
+                return false;
+            }
+
+            return EqualityComparer<string>.Default.Equals(k.Text, this.Text);
+        }
+
+        public override int GetHashCode()
+        {
+            if (this.Text == null) { return 0; }
+            return this.Text.GetHashCode();
+        }
     }
+
     class Program
     {
         static void Main(string[] args)
