@@ -145,10 +145,11 @@ namespace Blog.ReflectionByExpression.PerformanceTest
             }
 
             {
-                string pfad = Environment.CurrentDirectory;
+                string pfad = Assembly.GetEntryAssembly().Location;
                 string[] teile = pfad.Split('\\');
-                teile[teile.Length - 3] = "Blog.ReflectionByExpression.ToBeReflectedOn";
-                string foreignPfad = string.Join("\\", teile) + @"\Blog.ReflectionByExpression.ToBeReflectedOn.dll";
+                teile[teile.Length - 4] = "Blog.ReflectionByExpression.ToBeReflectedOn";
+                teile[teile.Length - 1] = "Blog.ReflectionByExpression.ToBeReflectedOn.dll";
+                string foreignPfad = string.Join("\\", teile);
                 var foreign = Assembly.LoadFile(foreignPfad);
                 var foreignTaget = foreign.CreateInstance("Blog.ReflectionByExpression.ToBeReflectedOn.ReflectThis");
                 IAccessor foreignAccessor = AccessorFactory.CreateEmitAccessor(foreignTaget.GetType(), "Prop1");
