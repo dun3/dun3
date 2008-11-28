@@ -18,7 +18,7 @@ namespace Com.Hertkorn.Framework.Timing
             sb.Append(stopwatch.Elapsed);
             sb.Append(" (");
             sb.Append(stopwatch.ElapsedMilliseconds);
-            sb.AppendLine(")");
+            sb.Append(")");
 
             return sb;
         }
@@ -34,6 +34,7 @@ namespace Com.Hertkorn.Framework.Timing
 
                 if (stopwatch.ElapsedMilliseconds > 0)
                 {
+                    sb.AppendLine();
                     sb.Append("  ");
                     sb.Append(stopwatch.OperationCount);
                     sb.AppendLine(" Ops");
@@ -42,7 +43,7 @@ namespace Com.Hertkorn.Framework.Timing
                     sb.AppendLine(" ms/Op");
                     sb.Append("  ");
                     sb.Append(stopwatch.OperationCount / stopwatch.ElapsedMilliseconds);
-                    sb.AppendLine(" Ops/ms");
+                    sb.Append(" Ops/ms");
                 }
 
                 return sb.ToString();
