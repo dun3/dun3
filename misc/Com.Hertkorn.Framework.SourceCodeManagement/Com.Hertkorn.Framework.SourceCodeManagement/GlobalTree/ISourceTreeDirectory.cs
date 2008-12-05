@@ -2,7 +2,7 @@
 using System.IO;
 using Com.Hertkorn.Framework.SourceCodeManagement.VisualStudio;
 
-namespace Com.Hertkorn.Framework.SourceCodeManagement.SourceTree
+namespace Com.Hertkorn.Framework.SourceCodeManagement.GlobalTree
 {
     public interface ISourceTreeDirectory
     {

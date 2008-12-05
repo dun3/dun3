@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace JavaPuzzler.RandomNr
 {
@@ -9,19 +10,18 @@ namespace JavaPuzzler.RandomNr
     {
         static void Main(string[] args)
         {
-            Random rnd = new Random();
-            int n = 0;
-            for (int i = 0; i < 100000; i++)
+            var fs = new StreamWriter((new FileInfo("c:\\test.txt")).OpenWrite());
+            long n = 0;
+
+            for (int i = (int)Math.Pow(2, 24) - 100; i < (int)Math.Pow(2, 24) + 100; i++)
             {
-                int j = rnd.Next();
-                float f = j;
-                if (Math.Round(f) != j)
-                {
-                    n++;
-                }
+                float f = (float)i;
+                int r = (int)Math.Round(f);
+                fs.WriteLine("{0} {1} {2} {3}", i, f, r, r == i);
             }
 
-            Console.WriteLine(n);
+            fs.Flush();
+            fs.Close();
         }
     }
 }

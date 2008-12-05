@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Com.Hertkorn.Framework.SourceCodeManagement.VisualStudio;
 
-namespace Com.Hertkorn.Framework.SourceCodeManagement.SourceTree
+namespace Com.Hertkorn.Framework.SourceCodeManagement.GlobalTree
 {
     public class SourceTree : ISourceTreeRootDirectory
     {

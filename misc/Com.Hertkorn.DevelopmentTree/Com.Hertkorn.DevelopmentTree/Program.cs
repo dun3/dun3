@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Com.Hertkorn.Framework.SourceCodeManagement.Product;
 using Com.Hertkorn.Framework.SourceCodeManagement.VisualStudio;
 using NVelocity;
 using NVelocity.App;
 using NVelocity.Runtime;
+using Com.Hertkorn.Framework.SourceCodeManagement.Product;
 
 namespace Com.Hertkorn.DevelopmentTree
 {

@@ -5,12 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.DevelopmentTre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Framework.SourceCodeManagement", "..\Com.Hertkorn.Framework.SourceCodeManagement\Com.Hertkorn.Framework.SourceCodeManagement\Com.Hertkorn.Framework.SourceCodeManagement.csproj", "{0DB4322A-672B-4F44-AA4E-14D7EA38F5B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDepend.Helpers.FileDirectoryPath", "..\..\externalSources\NDepend.Helpers.FileDirectoryPath.1.0\NDepend.Helpers.FileDirectoryPath\NDepend.Helpers.FileDirectoryPath.csproj", "{680342E7-0F89-473C-A4C4-C67B7DB0EA40}"
-EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = AdMan.Services.WorkflowParameterBuilder.Test.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -24,10 +19,6 @@ Global
 		{0DB4322A-672B-4F44-AA4E-14D7EA38F5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DB4322A-672B-4F44-AA4E-14D7EA38F5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DB4322A-672B-4F44-AA4E-14D7EA38F5B2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{680342E7-0F89-473C-A4C4-C67B7DB0EA40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{680342E7-0F89-473C-A4C4-C67B7DB0EA40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{680342E7-0F89-473C-A4C4-C67B7DB0EA40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{680342E7-0F89-473C-A4C4-C67B7DB0EA40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

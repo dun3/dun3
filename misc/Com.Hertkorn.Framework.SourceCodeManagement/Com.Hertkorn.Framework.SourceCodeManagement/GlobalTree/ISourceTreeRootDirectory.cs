@@ -1,5 +1,5 @@
 ﻿
-namespace Com.Hertkorn.Framework.SourceCodeManagement.SourceTree
+namespace Com.Hertkorn.Framework.SourceCodeManagement.GlobalTree
 {
     public interface ISourceTreeRootDirectory : ISourceTreeDirectory
     {
