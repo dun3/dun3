@@ -88,12 +88,12 @@ namespace VmVerteilung
                         sw.WriteLine("    " + vm.IoType + " (" + vm.Io + ")");
                         sw.WriteLine("    " + vm.Size);
                     }
-                    sw.WriteLine("  Total burden: " + item.Vmz.Aggregate(MINIMUM_FREE, (before, next) => { return before + next.Io; }));
+                    sw.WriteLine("  Total burden: " + item.Burden);
                 }
 
 
                 var sortByBurden = from s in storagez
-                                   let t = s.Vmz.Aggregate(MINIMUM_FREE, (before, next) => { return before + next.Io; })
+                                   let t = s.Burden
                                    orderby t descending
                                    select new { Io = t, Store = s };
 
@@ -110,9 +110,9 @@ namespace VmVerteilung
                 sw.WriteLine("Sort by Unassigned:");
                 foreach (var item in sortByUnassigned)
                 {
-                    double fromHot = item.Vmz.Where((vm) => { return vm.IoType == IoType.Hot; }).Aggregate(MINIMUM_FREE, (before, next) => { return before + next.Size; });
-                    double fromMedium = item.Vmz.Where((vm) => { return vm.IoType == IoType.Medium; }).Aggregate(MINIMUM_FREE, (before, next) => { return before + next.Size; });
-                    double fromLow = item.Vmz.Where((vm) => { return vm.IoType == IoType.Low; }).Aggregate(MINIMUM_FREE, (before, next) => { return before + next.Size; });
+                    double fromHot = item.Vmz.Where((vm) => { return vm.IoType == IoType.Hot; }).Aggregate(0.0, (before, next) => { return before + next.Size; });
+                    double fromMedium = item.Vmz.Where((vm) => { return vm.IoType == IoType.Medium; }).Aggregate(0.0, (before, next) => { return before + next.Size; });
+                    double fromLow = item.Vmz.Where((vm) => { return vm.IoType == IoType.Low; }).Aggregate(0.0, (before, next) => { return before + next.Size; });
                     sw.WriteLine(item.Id + ": " + item.Unassigned + " - h: " + fromHot + " m: " + fromMedium + " l: " + fromLow);
                 }
             }
