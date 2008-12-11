@@ -98,7 +98,7 @@ namespace VmVerteilung
                 sw.WriteLine("Sort by burden:");
                 foreach (var item in sortByBurden)
                 {
-                    sw.WriteLine(item.Store.Id + ":" + item.Io);
+                    sw.WriteLine(item.Store.Id + ": " + item.Io);
                 }
 
                 var sortByUnassigned = from s in storagez
@@ -108,9 +108,11 @@ namespace VmVerteilung
                 sw.WriteLine("Sort by Unassigned:");
                 foreach (var item in sortByUnassigned)
                 {
-                    sw.WriteLine(item.Id + ":" + item.Unassigned);
+                    double fromHot = item.Vmz.Where((vm) => { return vm.IoType == IoType.Hot; }).Aggregate(0.0, (before, next) => { return before + next.Size; });
+                    double fromMedium = item.Vmz.Where((vm) => { return vm.IoType == IoType.Medium; }).Aggregate(0.0, (before, next) => { return before + next.Size; });
+                    double fromLow = item.Vmz.Where((vm) => { return vm.IoType == IoType.Low; }).Aggregate(0.0, (before, next) => { return before + next.Size; });
+                    sw.WriteLine(item.Id + ": " + item.Unassigned + " - h: " + fromHot + " m: " + fromMedium + " l: " + fromLow);
                 }
-
             }
         }
 
@@ -120,62 +122,28 @@ namespace VmVerteilung
 
             SortInMediumz(vmz, storagez);
 
-            //SortInLow(vmz, storagez);
+            SortInLow(vmz, storagez);
         }
 
         private static void SortInLow(List<Vm> vmz, List<Storage> storagez)
         {
-            var lowz = new LinkedList<Vm>(
-                from s in vmz
-                where s.IoType == IoType.Low
-                orderby s.Io descending
-                select s);
+            var largeToSmall = from s in vmz
+                               where s.IoType == IoType.Low
+                               orderby s.Size descending
+                               select s;
 
-
-            double totalUnassigned = storagez.Aggregate(
-                0.0,
-                (before, item) =>
-                {
-                    return before + item.Unassigned;
-                });
-
-            double totalToAssign = lowz.Aggregate(
-                0.0,
-                (before, item) =>
-                {
-                    return before + item.Size;
-                });
-
-            if (totalUnassigned < totalToAssign) { throw new Exception("More to assign (" + totalToAssign + ") than unassigned (" + totalUnassigned + ")"); }
-
-            double targetUnassigned = (totalUnassigned - totalToAssign) / storagez.Count;
-
-            List<Storage> applicableStoragez;
-            do
+            foreach (var item in largeToSmall)
             {
-                applicableStoragez = (from s in storagez
-                                      where s.Unassigned > targetUnassigned
-                                      where s.Vmz.Count < 8
-                                      orderby s.Unassigned descending
-                                      select s).ToList();
-                foreach (var item in applicableStoragez)
-                {
-                    item.Vmz.Add(lowz.First.Value);
-                    lowz.RemoveFirst();
-                }
 
-            } while ((applicableStoragez.Count > 0) && (lowz.Count > 0));
+                var firstThatFits = (from s in storagez
+                                     where s.Vmz.Count < 8
+                                     where s.Unassigned - item.Size > 0.0
+                                     orderby s.Unassigned ascending
+                                     select s).FirstOrDefault();
 
-            if (lowz.Count > 0)
-            {
-                foreach (var item in lowz)
-                {
-                    var lowest = (from s in storagez
-                                  where s.Vmz.Count < 8
-                                  orderby s.Unassigned descending
-                                  select s).First();
-                    lowest.Vmz.Add(item);
-                }
+                if (firstThatFits == null) { throw new Exception("could not find any space left for low " + item.Id); }
+
+                firstThatFits.Vmz.Add(item);
             }
         }
 
