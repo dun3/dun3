@@ -25,6 +25,14 @@ namespace VmVerteilung
             }
         }
 
+        public double Burden
+        {
+            get
+            {
+                return Vmz.Aggregate(0.0, (before, next) => { return before + next.Io; });
+            }
+        }
+
         public bool IsOvercommitted
         {
             get

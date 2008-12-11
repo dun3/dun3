@@ -120,7 +120,7 @@ namespace VmVerteilung
 
             SortInMediumz(vmz, storagez);
 
-            SortInLow(vmz, storagez);
+            //SortInLow(vmz, storagez);
         }
 
         private static void SortInLow(List<Vm> vmz, List<Storage> storagez)
@@ -187,31 +187,21 @@ namespace VmVerteilung
                            orderby s.Io descending
                            select s).ToList();
 
-            var sorted = from s in storagez
-                         orderby s.Unassigned descending
-                         select s;
+            // Do an averaging by IO
 
-            foreach (var item in sorted)
+            foreach (var medium in mediumz)
             {
-                item.Vmz.Add(mediumz[0]);
-                mediumz.RemoveAt(0);
-            }
-
-            mediumz = (from s in mediumz
-                       orderby s.Io descending
-                       select s).ToList();
-
-            sorted = from s in storagez
-                     orderby s.Unassigned descending
-                     select s;
-
-            foreach (var item in sorted)
-            {
-                if (mediumz.Count > 0)
+                Storage applicableStorage = (from s in storagez
+                                             where s.Unassigned - medium.Size > 0.0
+                                             where s.Vmz.Count < 8
+                                             orderby s.Burden ascending
+                                             select s).FirstOrDefault();
+                if (applicableStorage == null)
                 {
-                    item.Vmz.Add(mediumz[0]);
-                    mediumz.RemoveAt(0);
+                    throw new Exception("Could not find solution for IO averaging. Sorry");
                 }
+
+                applicableStorage.Vmz.Add(medium);
             }
         }
 
