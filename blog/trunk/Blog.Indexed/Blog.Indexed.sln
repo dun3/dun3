@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Indexed", "Blog.Indexed\Blog.Indexed.csproj", "{56265517-4566-499F-B26F-92992288CC12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Indexed.Test", "Blog.Indexed.Test\Blog.Indexed.Test.csproj", "{EED4A635-7BC6-422A-8A97-479BBD00D1DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56265517-4566-499F-B26F-92992288CC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56265517-4566-499F-B26F-92992288CC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56265517-4566-499F-B26F-92992288CC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56265517-4566-499F-B26F-92992288CC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED4A635-7BC6-422A-8A97-479BBD00D1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED4A635-7BC6-422A-8A97-479BBD00D1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED4A635-7BC6-422A-8A97-479BBD00D1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EED4A635-7BC6-422A-8A97-479BBD00D1DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
