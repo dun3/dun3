@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading;
@@ -26,6 +25,9 @@ namespace SafeCopy
         public static long DirCount = 0;
         public static long ErrorCount = 0;
 
+        public static FileInfo m_logFile = new FileInfo(@"c:\safecopylog.txt");
+        public static Dictionary<string, object> m_logFileAlreadyCopied = new Dictionary<string, object>();
+
         static void Main(string[] args)
         {
             try
@@ -35,6 +37,8 @@ namespace SafeCopy
                 DirectoryInfo sourceDir = new DirectoryInfo(args[0]);
 
                 if (!sourceDir.Exists) { Console.WriteLine("di does not exist"); return; }
+
+                LoadAlreadyCopied();
 
                 string relativePath = ".";
 
@@ -46,12 +50,17 @@ namespace SafeCopy
                     {
                         while (m_running || (m_queue.Count > 0))
                         {
-                            List<QueueItem> items = new List<QueueItem>(200);
+                            long lengthSum = 0;
+
+                            List<QueueItem> items = new List<QueueItem>(2000);
                             lock (m_queue)
                             {
-                                while ((m_queue.Count > 0) && (items.Count < 100))
+                                // get max 50MB worth of next files
+                                while ((m_queue.Count > 0) && (lengthSum < 50 * 1024 * 1024))
                                 {
-                                    items.Add(m_queue.Dequeue());
+                                    QueueItem next = m_queue.Dequeue();
+                                    items.Add(next);
+                                    lengthSum += next.Length;
                                 }
                             }
 
@@ -60,10 +69,12 @@ namespace SafeCopy
                                 try
                                 {
                                     Console.Write(".");
-                                    if (!File.Exists(item.TargetPath))
-                                    {
-                                        File.Copy(item.SourcePath, item.TargetPath);
-                                    }
+                                    //if (!File.Exists(item.TargetPath))
+                                    //{
+
+                                    File.Copy(item.SourcePath, item.TargetPath);
+
+                                    //}
                                 }
                                 catch (Exception ex)
                                 {
@@ -71,6 +82,17 @@ namespace SafeCopy
                                     ErrorCount++;
                                     LOG.ErrorFormat("Error copying file '{0}' -> '{1}': {2}", item.SourcePath, item.TargetPath, ex.ToString());
                                 }
+                            }
+
+                            using (var stream = new StreamWriter(m_logFile.FullName, true, Encoding.Unicode))
+                            {
+                                foreach (var item in items)
+                                {
+                                    stream.WriteLine(item.SourcePath);
+                                }
+
+                                stream.Flush();
+                                stream.Close();
                             }
 
                             if (m_queue.Count == 0)
@@ -104,6 +126,32 @@ namespace SafeCopy
             Console.WriteLine(string.Format("DirCount: {0} FileCount: {1} ErrorCount: {2}", DirCount, FileCount, ErrorCount));
         }
 
+        private static void LoadAlreadyCopied()
+        {
+            if (m_logFile.Exists)
+            {
+                using (var stream = new StreamReader(m_logFile.OpenRead(), Encoding.Unicode))
+                {
+                    try
+                    {
+                        while (stream.Peek() >= 0)
+                        {
+                            var line = stream.ReadLine();
+                            m_logFileAlreadyCopied[line] = new object();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        LOG.Error(ex.ToString());
+                    }
+                }
+            }
+            else
+            {
+                m_logFile.Create();
+            }
+        }
+
         private static LinkedList<QueueItem> m_foundFiles = new LinkedList<QueueItem>();
 
         private static void Recurse(DirectoryInfo sourceDir, DirectoryInfo targetDir, string relativePath)
@@ -112,20 +160,27 @@ namespace SafeCopy
 
             foreach (FileInfo file in sourceDir.GetFiles())
             {
-                string targetPath = Path.Combine(targetDir.FullName, file.Name);
-                try
+                if (!m_logFileAlreadyCopied.ContainsKey(file.FullName))
                 {
-                    LOG.InfoFormat("Copying '{0}' -> '{1}'", file.FullName, targetPath);
-                    //Console.Write(".");
-                    FileCount++;
+                    string targetPath = Path.Combine(targetDir.FullName, file.Name);
+                    try
+                    {
+                        LOG.InfoFormat("Copying '{0}' -> '{1}'", file.FullName, targetPath);
+                        //Console.Write(".");
+                        FileCount++;
 
-                    m_foundFiles.AddLast(new QueueItem(file.FullName, targetPath));
+                        m_foundFiles.AddLast(new QueueItem(file.FullName, targetPath, file.Length));
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorCount++;
+                        LOG.ErrorFormat("Error evaluating file '{0}' -> '{1}': {2}", file.FullName, targetPath, ex.ToString());
+                        Console.Write("!");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    ErrorCount++;
-                    LOG.ErrorFormat("Error evaluating file '{0}' -> '{1}': {2}", file.FullName, targetPath, ex.ToString());
-                    Console.Write("!");
+                    Console.Write("s");
                 }
             }
 
@@ -182,16 +237,16 @@ namespace SafeCopy
 
         public class QueueItem
         {
-            /// <summary>
-            /// Initializes a new instance of the QueueItem class.
-            /// </summary>
-            public QueueItem(string sourcePath, string targetPath)
+            public QueueItem(string sourcePath, string targetPath, long length)
             {
                 SourcePath = sourcePath;
                 TargetPath = targetPath;
+                Length = length;
             }
+
             public string SourcePath { get; set; }
             public string TargetPath { get; set; }
+            public long Length { get; set; }
         }
     }
 }
