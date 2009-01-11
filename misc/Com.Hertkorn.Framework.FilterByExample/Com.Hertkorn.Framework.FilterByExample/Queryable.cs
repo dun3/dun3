@@ -18,8 +18,6 @@ namespace Com.Hertkorn.Framework.FilterByExample
 
             var relevantPropertyz = PropertyInfoFilter.FindRelevantPropertyz<T>(propertiesToExclude);
 
-
-
             return FilterByExample<T>(source, example, relevantPropertyz);
         }
 
@@ -27,84 +25,28 @@ namespace Com.Hertkorn.Framework.FilterByExample
         {
             // since this method is private no additional precondition check.
 
-            Func<T, IQueryable<T>, IQueryable<T>> t = CreateFuncNoCurry<T>(relevantPropertyz);
+            var exampleExpression = Expression.Constant(example, typeof(T));
 
-            return t(example, source);
-        }
+            var otherParameterExpression = Expression.Parameter(typeof(T), "other");
 
-        private static Func<T, IQueryable<T>, IQueryable<T>> CreateFuncNoCurry<T>(PropertyInfo[] relevantPropertyz)
-        {
-            PropertyInfo[] t = relevantPropertyz;
-
-            var parameterExample = Expression.Parameter(typeof(T), "ex");
-            var parameterA = Expression.Parameter(typeof(T), "a");
-
-            var expression = Expression.Equal(
-                Expression.MakeMemberAccess(parameterA, t[0]),
-                Expression.MakeMemberAccess(parameterExample, t[0])
+            var filterExpression = Expression.Equal(
+                Expression.MakeMemberAccess(otherParameterExpression, relevantPropertyz[0]),
+                Expression.MakeMemberAccess(exampleExpression, relevantPropertyz[0])
                 );
 
-            for (int i = 1; i < t.Length; i++)
+            for (int i = 1; i < relevantPropertyz.Length; i++)
             {
                 var next = Expression.Equal(
-                    Expression.MakeMemberAccess(parameterA, t[i]),
-                    Expression.MakeMemberAccess(parameterExample, t[i])
+                    Expression.MakeMemberAccess(otherParameterExpression, relevantPropertyz[i]),
+                    Expression.MakeMemberAccess(exampleExpression, relevantPropertyz[i])
                     );
 
-                expression = Expression.AndAlso(expression, next);
+                filterExpression = Expression.AndAlso(filterExpression, next);
             }
 
-            var test = Expression.Lambda<Func<T, T, bool>>(expression, parameterExample, parameterA);
+            Expression<Func<T, bool>> filter = Expression.Lambda<Func<T, bool>>(filterExpression, otherParameterExpression);
 
-            var testCompile = test.Compile();
-
-            //Func<T, IQueryable<T>, IQueryable<T>> intermediate = (ex, a) =>
-            //    {
-            //        List<T> temp = new List<T>();
-            //        foreach (var item in a)
-            //        {
-            //            if (testCompile(item, ex))
-            //            {
-            //                temp.Add(item);
-            //            }
-            //        }
-
-            //        return temp.AsQueryable();
-            //    };
-
-            //return intermediate;
-
-
-            // WAAAAAAAAAAAAAAAAAAAAT, die ist um faktor 10000 oder so langsamer als obige
-            //Func<T, IQueryable<T>, IQueryable<T>> intermediate = (ex, a) =>
-            //    {
-            //        var r = from m in a
-            //                where testCompile(m, ex)
-            //                select m;
-            //        return r;
-            //    };
-
-            //return intermediate;
-
-            Func<T, IQueryable<T>, IQueryable<T>> intermediate = (ex, a) =>
-            {
-                Expression<Func<T, bool>> pred = (inner) => testCompile(inner, ex);
-                var t1 = a.Where(pred);
-
-                var t2 = t1.Expression;
-
-                //return t1;
-
-                Func<T, bool> pred2 = (inner) => testCompile(inner, ex);
-
-                IQueryable<T> aWhereAsQueryable = a.Where(pred2).AsQueryable();
-
-                var t3 = aWhereAsQueryable.Expression;
-
-                return aWhereAsQueryable;
-            };
-
-            return intermediate;
+            return source.Where(filter);
         }
     }
 }
