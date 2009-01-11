@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerable.cs" />
+    <Compile Include="PropertyInfoFilter.cs" />
     <Compile Include="Queryable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
