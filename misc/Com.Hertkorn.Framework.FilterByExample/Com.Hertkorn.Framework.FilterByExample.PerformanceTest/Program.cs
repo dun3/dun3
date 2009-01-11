@@ -57,6 +57,30 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
             sw.Stop();
 
             Console.WriteLine(sw.ElapsedMilliseconds);
+
+            PrecompiledEnumerableTest peTest = new PrecompiledEnumerableTest();
+
+            peTest.SetUp();
+
+            sw = new Stopwatch();
+
+            Thread.Sleep(500);
+
+            sw.Start();
+
+            for (int i = 0; i < 100000; i++)
+            {
+                peTest.NoIgnoredPropertiesNoHitTest();
+                peTest.NoIgnoredProperties1HitTest();
+                peTest.NoIgnoredPropertiesMultipleHitsTest();
+                peTest.NoIgnoredPropertiesMultiTest();
+                peTest.OneIgnoredPropertiesTest();
+                peTest.TwoIgnoredPropertiesTest();
+            }
+
+            sw.Stop();
+
+            Console.WriteLine(sw.ElapsedMilliseconds);
         }
     }
 }

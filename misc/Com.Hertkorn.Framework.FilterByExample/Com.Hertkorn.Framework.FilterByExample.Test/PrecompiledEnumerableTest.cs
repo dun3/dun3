@@ -8,7 +8,7 @@ using NUnit.Framework.SyntaxHelpers;
 namespace Com.Hertkorn.Framework.FilterByExample
 {
     [TestFixture]
-    public class EnumerableTest
+    public class PrecompiledEnumerableTest
     {
         #region SetUp
 
@@ -102,33 +102,16 @@ namespace Com.Hertkorn.Framework.FilterByExample
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SourceNullTest()
+        public void PropertiesToIgnoreNullTest()
         {
-            IQueryable<TestClass> test = null;
-
-            var filtered = test.FilterByExample<TestClass>(m_example, x => x.TestInt);
+            var filter = Enumerable.CreateFilter<TestClass>(null);
         }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void ExampleNullTest()
-        {
-            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(null, x => x.TestInt);
-        }
-
-        // Won't compile anymore
-        //[Test]
-        //[ExpectedException(typeof(ArgumentNullException))]
-        //public void PropertiesToIgnoreNullTest()
-        //{
-        //    var filtered = m_exampleEnumerable.FilterByExample<TestClass>(m_example, null);
-        //}
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void PropertiesToIgnoreContainsNullTest()
         {
-            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(m_example, x => x.TestInt, null, x => x.TestLong);
+            var filter = Enumerable.CreateFilter<TestClass>(x => x.TestInt, null, x => x.TestLong);
         }
 
         #endregion
@@ -138,7 +121,9 @@ namespace Com.Hertkorn.Framework.FilterByExample
         [Test]
         public void NoIgnoredPropertiesNoHitTest()
         {
-            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 100, 100, 100));
+            var filter = Enumerable.CreateFilter<TestClass>();
+
+            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 100, 100, 100), filter);
 
             Assert.That(filtered, Is.Not.Null);
             Assert.That(filtered.Count(), Is.EqualTo(0));
@@ -147,7 +132,9 @@ namespace Com.Hertkorn.Framework.FilterByExample
         [Test]
         public void NoIgnoredProperties1HitTest()
         {
-            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(m_example);
+            var filter = Enumerable.CreateFilter<TestClass>();
+
+            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(m_example, filter);
 
             Assert.That(filtered.Count(), Is.EqualTo(1));
         }
@@ -155,7 +142,9 @@ namespace Com.Hertkorn.Framework.FilterByExample
         [Test]
         public void NoIgnoredPropertiesMultipleHitsTest()
         {
-            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("test0", 9, 3, 9));
+            var filter = Enumerable.CreateFilter<TestClass>();
+
+            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("test0", 9, 3, 9), filter);
 
             Assert.That(filtered.Count(), Is.EqualTo(5));
         }
@@ -163,9 +152,11 @@ namespace Com.Hertkorn.Framework.FilterByExample
         [Test]
         public void NoIgnoredPropertiesMultiTest()
         {
-            var filtered0 = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 100, 100, 100));
-            var filtered1 = m_exampleEnumerable.FilterByExample<TestClass>(m_example);
-            var filtered5 = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("test0", 9, 3, 9));
+            var filter = Enumerable.CreateFilter<TestClass>();
+
+            var filtered0 = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 100, 100, 100), filter);
+            var filtered1 = m_exampleEnumerable.FilterByExample<TestClass>(m_example, filter);
+            var filtered5 = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("test0", 9, 3, 9), filter);
 
             Assert.That(filtered0.Count(), Is.EqualTo(0));
             Assert.That(filtered1.Count(), Is.EqualTo(1));
@@ -179,7 +170,9 @@ namespace Com.Hertkorn.Framework.FilterByExample
         [Test]
         public void OneIgnoredPropertiesTest()
         {
-            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 9, 3, 9), x => x.TestString);
+            var filter = Enumerable.CreateFilter<TestClass>(x => x.TestString);
+
+            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 9, 3, 9), filter);
 
             Assert.That(filtered.Count(), Is.EqualTo(5));
         }
@@ -187,8 +180,11 @@ namespace Com.Hertkorn.Framework.FilterByExample
         [Test]
         public void TwoIgnoredPropertiesTest()
         {
-            var filtered0 = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 50, 100, 100), x => x.TestLong, x => x.TestString);
-            var filtered1 = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("test0", 50, 100, 100), x => x.TestLong, x => x.TestInt);
+            var filterLongString = Enumerable.CreateFilter<TestClass>(x => x.TestLong, x => x.TestString);
+            var filterLongInt = Enumerable.CreateFilter<TestClass>(x => x.TestLong, x => x.TestInt);
+
+            var filtered0 = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 50, 100, 100), filterLongString);
+            var filtered1 = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("test0", 50, 100, 100), filterLongInt);
 
             Assert.That(filtered0.Count(), Is.EqualTo(1));
             Assert.That(filtered1.Count(), Is.EqualTo(30));
@@ -202,7 +198,7 @@ namespace Com.Hertkorn.Framework.FilterByExample
         [ExpectedException(typeof(ArgumentException))]
         public void OverignoredTest()
         {
-            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(m_example, x => x.TestInt, x => x.TestLong, x => x.TestString);
+            var filter = Enumerable.CreateFilter<TestClass>(x => x.TestInt, x => x.TestLong, x => x.TestString);
         }
 
         //As expected: This will NOT compile (good thing. ;-) )
@@ -210,7 +206,7 @@ namespace Com.Hertkorn.Framework.FilterByExample
         //[ExpectedException(typeof(ArgumentException))]
         //public void OverignoredPlusReadonlyTest()
         //{
-        //    var filtered = m_exampleQueryable.FilterByExample<TestClass>(m_example, x => x.TestInt, x => x.TestLong, x => x.TestString, x => x.ReadOnly);
+        //    var test = Enumerable.CreateFilter<TestClass>(m_example, x => x.TestInt, x => x.TestLong, x => x.TestString, x => x.ReadOnly);
         //}
 
         #endregion

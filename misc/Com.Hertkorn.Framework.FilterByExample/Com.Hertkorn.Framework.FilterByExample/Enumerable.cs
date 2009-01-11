@@ -36,6 +36,31 @@ namespace Com.Hertkorn.Framework.FilterByExample
             }
         }
 
+        public static IEnumerable<T> FilterByExample<T>(this IEnumerable<T> source, T example, Func<T, T, bool> precompiledFilter)
+        {
+            if (source == null) { throw new ArgumentNullException("source", "source is null."); }
+            if (example == null) { throw new ArgumentNullException("example", "example is null."); }
+            if (precompiledFilter == null) { throw new ArgumentNullException("precompiledFilter", "precompiledFilter is null."); }
+
+            foreach (T item in source)
+            {
+                if (precompiledFilter(example, item))
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        public static Func<T, T, bool> CreateFilter<T>(params Expression<Func<T, object>>[] propertiesToExclude)
+        {
+            if (propertiesToExclude == null) { throw new ArgumentNullException("propertiesToExclude", "propertiesToExclude is null."); }
+            if (propertiesToExclude.Contains(null)) { throw new ArgumentException("sequence contains a null item", "propertiesToExclude"); }
+
+            var relevantPropertyz = PropertyInfoFilter.FindRelevantPropertyz<T>(propertiesToExclude);
+
+            return CreateFilter<T>(relevantPropertyz);
+        }
+
         private static Func<T, T, bool> CreateFilter<T>(PropertyInfo[] relevantPropertyz)
         {
             var parameterExample = Expression.Parameter(typeof(T), "example");
