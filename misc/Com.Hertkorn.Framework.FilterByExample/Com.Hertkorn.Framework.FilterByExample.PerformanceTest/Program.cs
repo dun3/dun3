@@ -9,6 +9,10 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
 {
     public class Program
     {
+        private const int ENUMERABLE_COUNT = 1000;
+        private const int QUERYABLE_COUNT = 1000;
+        private const int PRECOMPILED_ENUMERABLE_COUNT = 100000;
+
         public static void Main(string[] args)
         {
             EnumerableTest eTest = new EnumerableTest();
@@ -20,7 +24,7 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
             Thread.Sleep(500);
             sw.Start();
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < ENUMERABLE_COUNT; i++)
             {
                 eTest.NoIgnoredPropertiesNoHitTest();
                 eTest.NoIgnoredProperties1HitTest();
@@ -32,7 +36,7 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
 
             sw.Stop();
 
-            Console.WriteLine(sw.ElapsedMilliseconds);
+            Console.WriteLine(String.Format("{0} --> {1:F5} ms/op", sw.ElapsedMilliseconds, 1.0 * sw.ElapsedMilliseconds / GetOpCount(ENUMERABLE_COUNT)));
 
             EnumerableTest qTest = new EnumerableTest();
 
@@ -44,7 +48,7 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
 
             sw.Start();
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < QUERYABLE_COUNT; i++)
             {
                 qTest.NoIgnoredPropertiesNoHitTest();
                 qTest.NoIgnoredProperties1HitTest();
@@ -56,7 +60,7 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
 
             sw.Stop();
 
-            Console.WriteLine(sw.ElapsedMilliseconds);
+            Console.WriteLine(String.Format("{0} --> {1:F5} ms/op", sw.ElapsedMilliseconds, 1.0 * sw.ElapsedMilliseconds / GetOpCount(QUERYABLE_COUNT)));
 
             PrecompiledEnumerableTest peTest = new PrecompiledEnumerableTest();
 
@@ -68,7 +72,7 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
 
             sw.Start();
 
-            for (int i = 0; i < 100000; i++)
+            for (int i = 0; i < PRECOMPILED_ENUMERABLE_COUNT; i++)
             {
                 peTest.NoIgnoredPropertiesNoHitTest();
                 peTest.NoIgnoredProperties1HitTest();
@@ -80,7 +84,14 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
 
             sw.Stop();
 
-            Console.WriteLine(sw.ElapsedMilliseconds);
+            Console.WriteLine(String.Format("{0} --> {1:F5} ms/op", sw.ElapsedMilliseconds, 1.0 * sw.ElapsedMilliseconds / GetOpCount(PRECOMPILED_ENUMERABLE_COUNT)));
+
+            Console.WriteLine("One Op = Filtering a list of 50 items length");
+        }
+
+        public static int GetOpCount(int count)
+        {
+            return count * 9;
         }
     }
 }
