@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Framework.Filt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Framework.FilterByExample.PerformanceTest", "Com.Hertkorn.Framework.FilterByExample.PerformanceTest\Com.Hertkorn.Framework.FilterByExample.PerformanceTest.csproj", "{33D2279E-B5C8-4657-A4BA-7D4F94B21F62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Framework.Querycache", "Com.Hertkorn.Framework.Querycache\Com.Hertkorn.Framework.Querycache.csproj", "{E22050F6-C682-4D2B-B455-28E45492DC80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Hertkorn.Framework.Querycache.Test", "Com.Hertkorn.Framework.Querycache.Test\Com.Hertkorn.Framework.Querycache.Test.csproj", "{61C6AD79-319C-4D8E-9122-B2452486F89D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{33D2279E-B5C8-4657-A4BA-7D4F94B21F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33D2279E-B5C8-4657-A4BA-7D4F94B21F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33D2279E-B5C8-4657-A4BA-7D4F94B21F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E22050F6-C682-4D2B-B455-28E45492DC80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E22050F6-C682-4D2B-B455-28E45492DC80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E22050F6-C682-4D2B-B455-28E45492DC80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E22050F6-C682-4D2B-B455-28E45492DC80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C6AD79-319C-4D8E-9122-B2452486F89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C6AD79-319C-4D8E-9122-B2452486F89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C6AD79-319C-4D8E-9122-B2452486F89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C6AD79-319C-4D8E-9122-B2452486F89D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
