@@ -38,7 +38,7 @@ namespace Com.Hertkorn.Framework.FilterByExample.PerformanceTest
 
             Console.WriteLine(String.Format("{0} --> {1:F5} ms/op", sw.ElapsedMilliseconds, 1.0 * sw.ElapsedMilliseconds / GetOpCount(ENUMERABLE_COUNT)));
 
-            EnumerableTest qTest = new EnumerableTest();
+            QueryableTest qTest = new QueryableTest();
 
             qTest.SetUp();
 
