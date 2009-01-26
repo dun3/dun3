@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 
 namespace Com.Hertkorn.Framework.Timing
 {
@@ -39,10 +40,10 @@ namespace Com.Hertkorn.Framework.Timing
                     sb.Append(stopwatch.OperationCount);
                     sb.AppendLine(" Ops");
                     sb.Append("  ");
-                    sb.Append(stopwatch.ElapsedMilliseconds / stopwatch.OperationCount);
+                    sb.Append((1.0 * stopwatch.ElapsedMilliseconds / stopwatch.OperationCount).ToString("F5", CultureInfo.InvariantCulture));
                     sb.AppendLine(" ms/Op");
                     sb.Append("  ");
-                    sb.Append(stopwatch.OperationCount / stopwatch.ElapsedMilliseconds);
+                    sb.Append((1.0 * stopwatch.OperationCount / stopwatch.ElapsedMilliseconds).ToString("F5", CultureInfo.InvariantCulture));
                     sb.Append(" Ops/ms");
                 }
 
