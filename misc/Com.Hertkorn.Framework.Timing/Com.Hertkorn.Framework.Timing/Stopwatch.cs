@@ -124,6 +124,15 @@ namespace Com.Hertkorn.Framework.Timing
             return stopwatch;
         }
 
+        public static Stopwatch Time(string name, long operationCount, Action action)
+        {
+            Stopwatch stopwatch = Time(action);
+            stopwatch.Name = name;
+            stopwatch.OperationCount = operationCount;
+
+            return stopwatch;
+        }
+
         //public void MarkedSection(string name, Action action)
         //{
         //    throw new NotImplementedException();
