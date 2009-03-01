@@ -162,13 +162,13 @@ namespace Com.Hertkorn.Framework.Querycache
 
         #endregion
 
-        #region Overfiltered
+        #region Allignored
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void OverignoredTest()
+        public void AllignoredTest()
         {
             var filtered = m_exampleQueryable.FilterByExample<TestClass>(m_example, x => x.TestInt, x => x.TestLong, x => x.TestString);
+            Assert.That(filtered.Count(), Is.EqualTo(m_exampleQueryable.Count()));
         }
 
         //As expected: This will NOT compile (good thing. ;-) )

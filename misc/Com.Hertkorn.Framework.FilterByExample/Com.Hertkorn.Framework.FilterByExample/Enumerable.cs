@@ -66,6 +66,11 @@ namespace Com.Hertkorn.Framework.FilterByExample
             var parameterExample = Expression.Parameter(typeof(T), "example");
             var parameterOther = Expression.Parameter(typeof(T), "other");
 
+            if (relevantPropertyz.Length == 0)
+            {
+                return (x, y) => true;
+            }
+
             var expression = Expression.Equal(
                 Expression.MakeMemberAccess(parameterOther, relevantPropertyz[0]),
                 Expression.MakeMemberAccess(parameterExample, relevantPropertyz[0])

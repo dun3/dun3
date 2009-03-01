@@ -25,6 +25,12 @@ namespace Com.Hertkorn.Framework.FilterByExample
         {
             // since this method is private no additional precondition check.
 
+            if (relevantPropertyz.Length == 0)
+            {
+                // no filtering
+                return source;
+            }
+
             var exampleExpression = Expression.Constant(example, typeof(T));
 
             var otherParameterExpression = Expression.Parameter(typeof(T), "other");

@@ -192,13 +192,14 @@ namespace Com.Hertkorn.Framework.FilterByExample
 
         #endregion
 
-        #region Overfiltered
+        #region Allignored
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void OverignoredTest()
+        public void AllignoredTest()
         {
             var filter = Enumerable.CreateFilter<TestClass>(x => x.TestInt, x => x.TestLong, x => x.TestString);
+            var filtered = m_exampleEnumerable.FilterByExample<TestClass>(new TestClass("asd", 50, 100, 100), filter);
+            Assert.That(filtered.Count(), Is.EqualTo(m_exampleEnumerable.Count()));
         }
 
         //As expected: This will NOT compile (good thing. ;-) )

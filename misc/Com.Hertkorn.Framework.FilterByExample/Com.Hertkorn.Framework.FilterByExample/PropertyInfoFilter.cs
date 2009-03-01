@@ -51,8 +51,6 @@ namespace Com.Hertkorn.Framework.FilterByExample
                 }
                 ).ToArray();
 
-            if (relevantPropertyz.Length < 1) { throw new ArgumentException("All public properties are marked as 'ignore'. Nothing to filter by."); }
-
             return relevantPropertyz;
         }
     }
