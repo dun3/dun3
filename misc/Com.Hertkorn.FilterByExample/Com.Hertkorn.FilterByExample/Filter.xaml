@@ -1,0 +1,34 @@
+﻿<Window x:Class="Com.Hertkorn.FilterByExample.Filter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Search" Height="382" Width="623">
+    <Grid>
+        <Button Height="35" Margin="0,67,12,0" Name="btnSearch" VerticalAlignment="Top" Width="86" HorizontalAlignment="Right" Click="btnSearch_Click">Search</Button>
+        <ListView Margin="12,108,12,12" Name="listBox1" ItemsSource="{Binding Path=Addressz}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Street" DisplayMemberBinding="{Binding Path=Street}"/>
+                    <GridViewColumn Header="StreetNumber" DisplayMemberBinding="{Binding Path=StreetNumber}"/>
+                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding Path=City}"/>
+                    <GridViewColumn Header="Zip" DisplayMemberBinding="{Binding Path=Zip}"/>
+                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Path=Country}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Margin="24,12,0,0" Height="23" Width="54" HorizontalAlignment="Left" VerticalAlignment="Top">Street</Label>
+        <TextBox Margin="72,12,12,0" Height="23" HorizontalAlignment="Left" Name="txtStreet" VerticalAlignment="Top" Width="120" />
+        <Label Margin="196,12,0,0" Height="23" Width="54" HorizontalAlignment="Left" VerticalAlignment="Top">Nr.</Label>
+        <TextBox Margin="244,12,12,0" Height="23" HorizontalAlignment="Left" Name="txtStreetNumber" VerticalAlignment="Top" Width="120" />
+        <Label Margin="368,12,0,0" Height="23" Width="54" HorizontalAlignment="Left" VerticalAlignment="Top">City</Label>
+        <TextBox Margin="416,12,12,0" Height="23" HorizontalAlignment="Left" Name="txtCity" VerticalAlignment="Top" Width="120" />
+        <Label Margin="24,47,0,0" Height="23" Width="54" HorizontalAlignment="Left" VerticalAlignment="Top">Zip</Label>
+        <TextBox Margin="72,47,12,0" Height="23" HorizontalAlignment="Left" Name="txtZip" VerticalAlignment="Top" Width="120" />
+        <Label Margin="196,47,0,0" Height="23" Width="54" HorizontalAlignment="Left" VerticalAlignment="Top">Country</Label>
+        <ComboBox Name="cmbCountry" Margin="244,47,12,0" Height="23" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" IsEditable="False">
+            <ComboBoxItem>UnitedStates</ComboBoxItem>
+            <ComboBoxItem>Germany</ComboBoxItem>
+            <ComboBoxItem>Switzerland</ComboBoxItem> 
+            <ComboBoxItem>France</ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</Window>

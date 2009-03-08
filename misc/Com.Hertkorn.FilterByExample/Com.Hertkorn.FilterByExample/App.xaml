@@ -1,0 +1,17 @@
+﻿<Application x:Class="Com.Hertkorn.FilterByExample.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:m="clr-namespace:Com.Hertkorn.FilterByExample.M"
+    StartupUri="Filter.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type m:Address}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=Street}" />
+                <TextBlock Text="{Binding Path=StreetNumber}" />
+                <TextBlock Text="{Binding Path=City}" />
+                <TextBlock Text="{Binding Path=Zip}" />
+                <TextBlock Text="{Binding Path=Country}" />                
+            </StackPanel>            
+        </DataTemplate>
+    </Application.Resources>
+</Application>
