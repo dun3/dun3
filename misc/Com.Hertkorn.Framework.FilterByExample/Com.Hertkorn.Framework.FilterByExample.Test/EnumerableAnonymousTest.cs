@@ -91,11 +91,26 @@ namespace Com.Hertkorn.Framework.FilterByExample
         private IEnumerable<TestClass> m_exampleEnumerable;
 
         [Test]
-        public void OnePropertyTest()
+        public void OneStringPropertyTest()
         {
             var filtered = m_exampleEnumerable.FilterByExample(new { TestString = "test1" }).ToList();
 
             Assert.That(filtered.Count, Is.EqualTo(m_exampleEnumerable.FilterByExample(new TestClass("test1", 0, 0, 0), x => x.TestInt, x => x.TestLong).Count()));
+        }
+
+        [Test]
+        public void OneStringOneLongPropertyTest()
+        {
+            var filtered = m_exampleEnumerable.FilterByExample(new { TestString = "test1", TestLong = 3L }).ToList();
+
+            Assert.That(filtered.Count, Is.EqualTo(m_exampleEnumerable.FilterByExample(new TestClass("test1", 0, 3, 0), x => x.TestInt).Count()));
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void IntInsteadOfLongPropertyTest()
+        {
+            var filtered = m_exampleEnumerable.FilterByExample(new { TestString = "test1", TestLong = 3 }).ToList();
         }
     }
 }
