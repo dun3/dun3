@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumerableAnonymousTest.cs" />
     <Compile Include="PrecompiledEnumerableTest.cs" />
     <Compile Include="EnumerableTest.cs" />
     <Compile Include="QueryableTest.cs" />

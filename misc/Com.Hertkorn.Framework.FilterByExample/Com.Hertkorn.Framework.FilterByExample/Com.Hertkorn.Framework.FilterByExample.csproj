@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerable.cs" />
+    <Compile Include="EnumerableAnonymous.cs" />
     <Compile Include="PropertyInfoFilter.cs" />
     <Compile Include="Queryable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
