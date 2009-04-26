@@ -61,10 +61,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IntegerTextBox.cs" />
+    <Compile Include="IntegerTextBoxParseException.cs" />
     <Compile Include="Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validator\ClockValidator.cs" />
+    <Compile Include="Validator\InvalidToBrushConverter.cs" />
+    <Compile Include="VM\Clock.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

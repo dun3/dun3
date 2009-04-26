@@ -3,6 +3,18 @@
              x:Class="Com.Hertkorn.OnlineStopwatch.App"
              >
     <Application.Resources>
-        
+        <Style x:Key="CountdownBoxes" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Width" Value="40" />
+        </Style>
+        <!--<Style x:Key="CountdownO" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>-->
     </Application.Resources>
 </Application>

@@ -6,13 +6,54 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Width="600" 
     Height="500">
-    <Grid Background="DeepSkyBlue">
-        <c:AnalogClock 
-            IsReverse="True" 
-            Hour="{Binding Source={x:Static sys:DateTime.Now.Hour}}" 
-            Minute="{Binding Source={x:Static sys:DateTime.Now.Minute}}" 
-            Second="{Binding Source={x:Static sys:DateTime.Now.Second}}" 
-            Millisecond="{Binding Source={x:Static sys:DateTime.Now.Millisecond}}">            
-        </c:AnalogClock>
-    </Grid>
+    <!--<UserControl.Resources>
+        <c:In
+    </UserControl.Resources>-->
+    <Canvas Background="DeepSkyBlue">
+        <c:IntegerTextBox 
+            x:Name="Hours" 
+            Text="00" 
+            LostFocus="Hours_LostFocus"
+            Style="{StaticResource CountdownBoxes}" 
+            Canvas.Left="50" 
+            Canvas.Top="50" />
+        <TextBlock x:Name="HoursMinutes"
+                   FontSize="25"
+                   Foreground="Red"
+                   Canvas.Left="90"
+                   Canvas.Top="50"                   
+                   Text=":" />
+        <c:IntegerTextBox 
+            x:Name="Minutes" 
+            Text="00" 
+            LostFocus="Minutes_LostFocus"        
+            Style="{StaticResource CountdownBoxes}" 
+            Canvas.Left="100" 
+            Canvas.Top="50" />
+        <TextBlock x:Name="MinutesSeconds"
+                   FontSize="25"
+                   Foreground="Red"
+                   Canvas.Left="140"
+                   Canvas.Top="50" 
+                   Text=":" />
+        <c:IntegerTextBox 
+            x:Name="Seconds" 
+            Text="00" 
+            LostFocus="Seconds_LostFocus"
+            Style="{StaticResource CountdownBoxes}" 
+            Canvas.Left="150" 
+            Canvas.Top="50" />
+        <Button x:Name="Start" Click="Start_Click" Canvas.Left="50" Canvas.Top="100" Width="45">
+            <TextBlock Text="Start" />
+        </Button>
+        <Button x:Name="Stop" Click="Stop_Click" Canvas.Left="100" Canvas.Top="100" Width="45">
+            <TextBlock Text="Stop" />
+        </Button>
+        <TextBlock x:Name="ErrorMessage" Text="" Foreground="Red" Canvas.Left="50" Canvas.Top="150" />
+        <MediaElement x:Name="Ring"
+                      AutoPlay="False"
+                      Source="ring.mp3"                      
+                      IsHitTestVisible="False"
+                      BufferingTime="12:00:00" />
+    </Canvas>
 </UserControl>
