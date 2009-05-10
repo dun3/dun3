@@ -12,10 +12,10 @@
     <Canvas Background="DeepSkyBlue">
         <c:IntegerTextBox 
             x:Name="Hours" 
-            Text="00" 
-            LostFocus="Hours_LostFocus"
+            Text="00"           
+            GotFocus="Hours_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
-            Canvas.Left="50" 
+            Canvas.Left="50"  
             Canvas.Top="50" />
         <TextBlock x:Name="HoursMinutes"
                    FontSize="25"
@@ -26,7 +26,7 @@
         <c:IntegerTextBox 
             x:Name="Minutes" 
             Text="00" 
-            LostFocus="Minutes_LostFocus"        
+            GotFocus="Minutes_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
             Canvas.Left="100" 
             Canvas.Top="50" />
@@ -39,15 +39,18 @@
         <c:IntegerTextBox 
             x:Name="Seconds" 
             Text="00" 
-            LostFocus="Seconds_LostFocus"
+            GotFocus="Seconds_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
             Canvas.Left="150" 
             Canvas.Top="50" />
         <Button x:Name="Start" Click="Start_Click" Canvas.Left="50" Canvas.Top="100" Width="45">
             <TextBlock Text="Start" />
         </Button>
-        <Button x:Name="Stop" Click="Stop_Click" Canvas.Left="100" Canvas.Top="100" Width="45">
+        <Button x:Name="Stop" Click="Stop_Click" Canvas.Left="100" Canvas.Top="100" Width="45" IsEnabled="False">
             <TextBlock Text="Stop" />
+        </Button>
+        <Button x:Name="Reset" Click="Reset_Click" Canvas.Left="150" Canvas.Top="100" Width="45" IsEnabled="False">
+            <TextBlock Text="Reset" />
         </Button>
         <TextBlock x:Name="ErrorMessage" Text="" Foreground="Red" Canvas.Left="50" Canvas.Top="150" />
         <MediaElement x:Name="Ring"

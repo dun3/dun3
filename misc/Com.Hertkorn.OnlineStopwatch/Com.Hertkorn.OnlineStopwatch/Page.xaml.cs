@@ -19,7 +19,9 @@ namespace Com.Hertkorn.OnlineStopwatch
     {
         DispatcherTimer m_requestUpdate = new DispatcherTimer();
         DateTime m_targetDateTime = DateTime.MaxValue;
-        TimeSpan m_initialTimeSpan = new TimeSpan(1, 2, 10);
+        TimeSpan m_initialTimeSpan = TimeSpan.MinValue;
+        TimeSpan m_remainingTimeSpan = TimeSpan.MaxValue;
+        bool m_isSet = false;
 
         public Page()
         {
@@ -28,22 +30,45 @@ namespace Com.Hertkorn.OnlineStopwatch
             m_requestUpdate.Tick += new EventHandler(m_requestUpdate_Tick);
             m_requestUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
 
-            Hours.Text = string.Format("{0:d2}", m_initialTimeSpan.Hours);
-            Minutes.Text = string.Format("{0:d2}", m_initialTimeSpan.Minutes);
-            Seconds.Text = string.Format("{0:d2}", m_initialTimeSpan.Seconds);
+            SetUIState();
+            SetUIToTimeSpan(TimeSpan.Zero);
         }
 
         void m_requestUpdate_Tick(object sender, EventArgs e)
         {
-            if (false)
+            m_remainingTimeSpan = m_targetDateTime - DateTime.Now;
+
+            if (IsNegative(m_remainingTimeSpan))
             {
-                Ring.Stop();
+                m_requestUpdate.Stop();
+                SetUIState();
+
                 Ring.Play();
+
+                m_remainingTimeSpan = m_initialTimeSpan;
+                SetUIToTimeSpan(m_initialTimeSpan);
             }
+            else
+            {
+                SetUIToTimeSpan(m_remainingTimeSpan);
+            }
+        }
+
+        private bool IsNegative(TimeSpan timeSpan)
+        {
+            return timeSpan.CompareTo(TimeSpan.Zero) < 0;
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            SafeUpdate(() =>
+            {
+                return new TimeSpan(ParseHours(), ParseMinutes(), ParseSeconds());
+            });
+
+            SetUIToTimeSpan(m_remainingTimeSpan);
+            m_targetDateTime = DateTime.Now.Add(m_remainingTimeSpan);
+
             m_requestUpdate.Start();
             SetUIState();
         }
@@ -59,62 +84,44 @@ namespace Com.Hertkorn.OnlineStopwatch
             Ring.Stop();
             Start.IsEnabled = !m_requestUpdate.IsEnabled;
             Stop.IsEnabled = m_requestUpdate.IsEnabled;
-        }
+            Reset.IsEnabled = !m_requestUpdate.IsEnabled;
 
-        private void Hours_LostFocus(object sender, RoutedEventArgs e)
+            Hours.IsEnabled = !m_requestUpdate.IsEnabled;
+            Minutes.IsEnabled = !m_requestUpdate.IsEnabled;
+            Seconds.IsEnabled = !m_requestUpdate.IsEnabled;
+        }
+         
+        private int ParseHours()
         {
-            ParseHours();
+            return ParseUserInput(Hours, 23);
         }
 
-        private void Minutes_LostFocus(object sender, RoutedEventArgs e)
+        private int ParseMinutes()
         {
-            ParseMinutes();
+            return ParseUserInput(Minutes, 59);
         }
 
-        private void Seconds_LostFocus(object sender, RoutedEventArgs e)
+        private int ParseSeconds()
         {
-            ParseSeconds();
+            return ParseUserInput(Seconds, 59);
         }
 
-        private void ParseHours()
-        {
-            SafeUpdate(Hours, 23, (parsedValue) =>
-            {
-                return new TimeSpan(parsedValue, m_initialTimeSpan.Minutes, m_initialTimeSpan.Seconds);
-            });
-        }
-
-        private void ParseMinutes()
-        {
-            SafeUpdate(Minutes, 59, (parsedValue) =>
-            {
-                return new TimeSpan(m_initialTimeSpan.Hours, parsedValue, m_initialTimeSpan.Seconds);
-            });
-        }
-
-        private void ParseSeconds()
-        {
-            SafeUpdate(Seconds, 59, (parsedValue) =>
-            {
-                return new TimeSpan(m_initialTimeSpan.Hours, m_initialTimeSpan.Minutes, parsedValue);
-            });
-        }
-
-        private void SafeUpdate(TextBox textBox, int maxValue, Func<int, TimeSpan> createTimeSpan)
+        private void SafeUpdate(Func<TimeSpan> createTimeSpan)
         {
             if (!m_requestUpdate.IsEnabled)
             {
-                try
+                if (!m_isSet)
                 {
-                    int parsedValue = ParseUserInput(textBox, maxValue);
-
-                    m_initialTimeSpan = createTimeSpan(parsedValue);
-
-                    UpdateUI();
-                }
-                catch (Exception ex)
-                {
-                    ErrorMessage.Text = ex.Message;
+                    try
+                    {
+                        m_initialTimeSpan = createTimeSpan();
+                        m_remainingTimeSpan = m_initialTimeSpan;
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorMessage.Text = ex.Message;
+                    }
+                    m_isSet = true;
                 }
             }
         }
@@ -147,12 +154,33 @@ namespace Com.Hertkorn.OnlineStopwatch
                 throw new Exception("Could not parse the Input '" + textBox.Text + "'");
             }
         }
-        
-        private void UpdateUI()
+
+        private void SetUIToTimeSpan(TimeSpan timeSpan)
         {
-            Hours.Text = string.Format("{0:d2}", m_initialTimeSpan.Hours);
-            Minutes.Text = string.Format("{0:d2}", m_initialTimeSpan.Minutes);
-            Seconds.Text = string.Format("{0:d2}", m_initialTimeSpan.Seconds);
+            Hours.Text = string.Format("{0:d2}", timeSpan.Hours);
+            Minutes.Text = string.Format("{0:d2}", timeSpan.Minutes);
+            Seconds.Text = string.Format("{0:d2}", timeSpan.Seconds);
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            m_isSet = false;
+            SetUIToTimeSpan(TimeSpan.Zero);
+        }
+
+        private void Hours_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Hours.SelectAll();
+        }
+
+        private void Minutes_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Minutes.SelectAll();
+        }
+
+        private void Seconds_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Seconds.SelectAll();
         }
     }
 }
