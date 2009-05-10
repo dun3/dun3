@@ -4,23 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:c="clr-namespace:Com.Hertkorn.OnlineStopwatch" 
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    Width="600" 
-    Height="500">
+    Width="250" 
+    Height="200">
     <!--<UserControl.Resources>
         <c:In
     </UserControl.Resources>-->
-    <Canvas Background="DeepSkyBlue">
+    <Canvas Background="Black">
         <c:IntegerTextBox 
             x:Name="Hours" 
             Text="00"           
             GotFocus="Hours_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
-            Canvas.Left="50"  
+            Canvas.Left="53"  
             Canvas.Top="50" />
         <TextBlock x:Name="HoursMinutes"
                    FontSize="25"
                    Foreground="Red"
-                   Canvas.Left="90"
+                   Canvas.Left="93"
                    Canvas.Top="50"                   
                    Text=":" />
         <c:IntegerTextBox 
@@ -28,12 +28,12 @@
             Text="00" 
             GotFocus="Minutes_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
-            Canvas.Left="100" 
+            Canvas.Left="103" 
             Canvas.Top="50" />
         <TextBlock x:Name="MinutesSeconds"
                    FontSize="25"
                    Foreground="Red"
-                   Canvas.Left="140"
+                   Canvas.Left="143"
                    Canvas.Top="50" 
                    Text=":" />
         <c:IntegerTextBox 
@@ -41,7 +41,7 @@
             Text="00" 
             GotFocus="Seconds_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
-            Canvas.Left="150" 
+            Canvas.Left="152" 
             Canvas.Top="50" />
         <Button x:Name="Start" Click="Start_Click" Canvas.Left="50" Canvas.Top="100" Width="45">
             <TextBlock Text="Start" />

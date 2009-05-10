@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//DE" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Online Stoppuhr mit Countdown</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="author" content="http://www.hertkorn.com/tobias/" />
+    <meta name="publisher" content="Tobias Hertkorn" />
+    <meta name="copyright" content="Tobias Hertkorn" />
+    <meta name="date" content="2009-05-10T15:04:00+02:00" />
+    <meta http-equiv="expires" content="43200" />
+    <meta name="robots" content="index, follow" />
+    <meta name="revisit-after" content="10 days" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+    <meta http-equiv="content-language" content="de-de" />
+    <meta name="keywords" content="Stoppuhr, Countdown, Zeit, Uhr, Herunterzählen" />
+    <meta name="description" content="Eine einfache Stoppuhr für Countdowns" />
+    <link rel="author" title="Impressum" href="impressum.html">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type="text/javascript" src="Silverlight.js"></script>
+
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            }
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+
+            var errMsg = "Unhandled Error in Silverlight 2 Application " + appSource + "\n";
+
+            errMsg += "Code: " + iErrorCode + "    \n";
+            errMsg += "Category: " + errorType + "       \n";
+            errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError") {
+                errMsg += "File: " + args.xamlFile + "     \n";
+                errMsg += "Line: " + args.lineNumber + "     \n";
+                errMsg += "Position: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError") {
+                if (args.lineNumber != 0) {
+                    errMsg += "Line: " + args.lineNumber + "     \n";
+                    errMsg += "Position: " + args.charPosition + "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+
+            throw new Error(errMsg);
+        }
+    </script>
+
+</head>
+<body>
+    <h1>
+        Online Stoppuhr</h1>
+    <div id="silverlightControlHost">
+        <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+            width="250" height="200">
+            <param name="source" value="ClientBin/Com.Hertkorn.OnlineStopwatch.xap" />
+            <param name="onerror" value="onSilverlightError" />
+            <param name="background" value="black" />
+            <param name="minRuntimeVersion" value="2.0.31005.0" />
+            <param name="autoUpgrade" value="true" />
+            <a href="http://go.microsoft.com/fwlink/?LinkID=124807" style="text-decoration: none;">
+                <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight"
+                    style="border-style: none" />
+            </a>
+        </object>
+    </div>
+    <div id="impressum">
+        <a href="index.html">Stoppuhr</a>&nbsp;|&nbsp;<a href="impressum.html">Impressum</a></div>
+</body>
+</html>
