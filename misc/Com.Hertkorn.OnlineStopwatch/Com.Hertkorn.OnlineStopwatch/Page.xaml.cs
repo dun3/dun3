@@ -82,13 +82,22 @@ namespace Com.Hertkorn.OnlineStopwatch
         private void SetUIState()
         {
             Ring.Stop();
-            Start.IsEnabled = !m_requestUpdate.IsEnabled;
+            Start.IsEnabled = !m_requestUpdate.IsEnabled;          
             Stop.IsEnabled = m_requestUpdate.IsEnabled;
             Reset.IsEnabled = !m_requestUpdate.IsEnabled;
 
-            Hours.IsEnabled = !m_requestUpdate.IsEnabled;
-            Minutes.IsEnabled = !m_requestUpdate.IsEnabled;
-            Seconds.IsEnabled = !m_requestUpdate.IsEnabled;
+            Hours.IsReadOnly = m_requestUpdate.IsEnabled;
+            Minutes.IsReadOnly = m_requestUpdate.IsEnabled;
+            Seconds.IsReadOnly = m_requestUpdate.IsEnabled;
+
+            if (!m_requestUpdate.IsEnabled)
+            {
+                Start.Focus();               
+            }
+            else
+            {
+                Stop.Focus();
+            }
         }
          
         private int ParseHours()
