@@ -61,7 +61,9 @@
     <Content Include="Com.Hertkorn.OnlineStopwatchTestPage.html" />
     <Content Include="impressum.html" />
     <Content Include="index.html" />
+    <Content Include="robots.txt" />
     <Content Include="Silverlight.js" />
+    <Content Include="sitemap.xml" />
     <Content Include="style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
