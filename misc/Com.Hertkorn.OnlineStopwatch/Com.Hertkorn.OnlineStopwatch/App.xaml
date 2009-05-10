@@ -6,7 +6,7 @@
     <Application.Resources>
         <Style x:Key="CountdownBoxes" TargetType="TextBox">
             <Setter Property="FontSize" Value="25" />
-            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="Foreground" Value="#FF00B1FF" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="TextAlignment" Value="Right" />
             <Setter Property="Width" Value="40" />
@@ -76,7 +76,212 @@
             </Setter>
         </Style>
 
+        <vsm:Style x:Key="buttonAddItems" TargetType="Button">
+            <Setter Property="Width" Value="45" />
+            <Setter Property="Height" Value="25" />
 
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootElement">
+                            <vsm:VisualStateManager.VisualStateGroups>
+                                <vsm:VisualStateGroup x:Name="FocusStates">
+                                    <vsm:VisualState x:Name="Unfocused" />
+                                    <vsm:VisualState x:Name="Focused" />
+                                </vsm:VisualStateGroup>
+                                <vsm:VisualStateGroup x:Name="CommonStates">
+                                    <vsm:VisualStateGroup.Transitions>
+                                        <vsm:VisualTransition GeneratedDuration="00:00:00.2000000" />
+                                    </vsm:VisualStateGroup.Transitions>
+                                    <vsm:VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                               Storyboard.TargetName="OverGlow"
+                                                                               Storyboard.TargetProperty="(UIElement.Opacity)">
+                                                <SplineDoubleKeyFrame KeySpline="0,0,0.5,1"
+                                                                          KeyTime="00:00:00.400"
+                                                                          Value="1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="00:00:00.2"
+                                                                 Storyboard.TargetName="PressedGlow"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1" />
+                                        </Storyboard>
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Disabled">
+                                       <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="DisabledGlow" Storyboard.TargetProperty="Opacity" To="1" Duration="0"/>
+                                        </Storyboard>
+                                    </vsm:VisualState>
+                                    <vsm:VisualState x:Name="Normal">
+                                        <Storyboard />
+                                    </vsm:VisualState>
+                                </vsm:VisualStateGroup>
+                            </vsm:VisualStateManager.VisualStateGroups>
+
+                            <Border Width="{TemplateBinding Width}"
+                                        Height="{TemplateBinding Height}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.5*" />
+                                        <RowDefinition Height="0.5*" />
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.RowSpan="2"
+                                                Background="#7FFFFFFF"
+                                                CornerRadius="2,2,2,2" />
+                                    <Border x:Name="backgroundBorder"
+                                                Grid.Row="0"
+                                                Grid.RowSpan="2"
+                                                BorderThickness="1,1,1,1"
+                                                CornerRadius="2,2,2,2">
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0,1"
+                                                                     EndPoint="0,0">
+                                                <GradientStop Offset="0"
+                                                                  Color="#FF003366" />
+                                                <GradientStop Offset="1"
+                                                                  Color="#FF0099FF" />
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                        <Border.Background>
+                                            <RadialGradientBrush>
+                                                <GradientStop Offset="0"
+                                                                  Color="#FF0080FF" />
+                                                <GradientStop Offset="0.894"
+                                                                  Color="#FF004991" />
+                                                <GradientStop Offset="1"
+                                                                  Color="#FF004991" />
+                                            </RadialGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <Border x:Name="OverGlow"
+                                                Grid.RowSpan="2"
+                                                BorderThickness="1,1,1,1"
+                                                CornerRadius="2,2,2,2"
+                                                Opacity="0">
+                                        <Border.Background>
+                                            <RadialGradientBrush>
+                                                <GradientStop Offset="0"
+                                                                  Color="#FF00B1FF" />
+                                                <GradientStop Offset="1"
+                                                                  Color="#FF0069D1" />
+                                            </RadialGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <Border x:Name="PressedGlow"
+                                                Grid.RowSpan="2"
+                                                BorderThickness="1,1,1,1"
+                                                CornerRadius="2,2,2,2"
+                                                Opacity="0">
+                                        <Border.Background>
+                                            <RadialGradientBrush>
+                                                <RadialGradientBrush.RelativeTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform CenterX="0.5"
+                                                                            CenterY="0.5"
+                                                                            ScaleX="1"
+                                                                            ScaleY="1" />
+                                                        <SkewTransform AngleX="0"
+                                                                           AngleY="0"
+                                                                           CenterX="0.5"
+                                                                           CenterY="0.5" />
+                                                        <RotateTransform Angle="0"
+                                                                             CenterX="0.5"
+                                                                             CenterY="0.5" />
+                                                        <TranslateTransform X="0"
+                                                                                Y="0" />
+                                                    </TransformGroup>
+                                                </RadialGradientBrush.RelativeTransform>
+                                                <GradientStop Offset="0"
+                                                                  Color="#00FFFFFF" />
+                                                <GradientStop Offset="1"
+                                                                  Color="#4C002B5D" />
+                                            </RadialGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <Border x:Name="DisabledGlow"
+                                                Grid.RowSpan="2"
+                                                BorderThickness="1,1,1,1"
+                                                CornerRadius="2,2,2,2"
+                                                Opacity="0">
+                                        <Border.Background>
+                                            <RadialGradientBrush>
+                                                <RadialGradientBrush.RelativeTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform CenterX="0.5"
+                                                                            CenterY="0.5"
+                                                                            ScaleX="1"
+                                                                            ScaleY="1" />
+                                                        <SkewTransform AngleX="0"
+                                                                           AngleY="0"
+                                                                           CenterX="0.5"
+                                                                           CenterY="0.5" />
+                                                        <RotateTransform Angle="0"
+                                                                             CenterX="0.5"
+                                                                             CenterY="0.5" />
+                                                        <TranslateTransform X="0"
+                                                                                Y="0" />
+                                                    </TransformGroup>
+                                                </RadialGradientBrush.RelativeTransform>
+                                                <GradientStop Offset="0"
+                                                                  Color="#99FFFFFF" />
+                                                <GradientStop Offset="1"
+                                                                  Color="#FF475059" />
+                                            </RadialGradientBrush>
+                                        </Border.Background>
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0,1"
+                                                                     EndPoint="0,0">
+                                                <GradientStop Offset="0"
+                                                                  Color="#FF475059" />
+                                                <GradientStop Offset="1"
+                                                                  Color="#7F475059" />
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                    </Border>
+                                    <Border x:Name="borderblue"
+                                                Grid.RowSpan="2"
+                                                Margin="1,1,1,1"
+                                                BorderThickness="1,1,1,1"
+                                                CornerRadius="2,2,2,2">
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0,1"
+                                                                     EndPoint="0,0">
+                                                <GradientStop Offset="0"
+                                                                  Color="#FF00B1FF" />
+                                                <GradientStop Offset="1"
+                                                                  Color="#7F00B1FF" />
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                    </Border>
+                                    <ContentPresenter Grid.RowSpan="2"
+                                                          HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          Content="{TemplateBinding Content}" />
+                                    <Border x:Name="glassBorder"
+                                                Margin="1,1,1,0"
+                                                CornerRadius="2,2,10,10">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0.5,1"
+                                                                     EndPoint="0.5,0">
+                                                <GradientStop Offset="0"
+                                                                  Color="#00FFFFFF" />
+                                                <GradientStop Offset="1"
+                                                                  Color="#A5FFFFFF" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </vsm:Style>
 
 
 

@@ -8,8 +8,8 @@
 }
 body
 {
-	padding: 0;
-	margin: 0;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	text-align: center;
 }
 
@@ -20,6 +20,11 @@ a
 a.visited
 {
 	color: White;
+}
+
+h1
+{
+	padding-top: 50px;
 }
 
 #silverlightControlHost

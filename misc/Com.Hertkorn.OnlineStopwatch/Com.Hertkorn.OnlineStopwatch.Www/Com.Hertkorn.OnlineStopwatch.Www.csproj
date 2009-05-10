@@ -56,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientBin\Com.Hertkorn.OnlineStopwatch.xap" />
-    <None Include=".htaccess" />
     <None Include="ClientBin\ring.mp3" />
     <Content Include="Com.Hertkorn.OnlineStopwatchTestPage.aspx" />
     <Content Include="Com.Hertkorn.OnlineStopwatchTestPage.html" />

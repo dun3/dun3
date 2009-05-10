@@ -4,23 +4,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:c="clr-namespace:Com.Hertkorn.OnlineStopwatch" 
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    Width="250" 
+    Width="450" 
     Height="200">
     <!--<UserControl.Resources>
         <c:In
     </UserControl.Resources>-->
     <Canvas Background="Black">
+        <Button x:Name="PlusOneMinute" 
+                Style="{StaticResource buttonAddItems}"
+                Canvas.Left="60"
+                Canvas.Top="60"
+                Click="PlusOneMinute_Click"
+                Width="45" 
+                Height="25">
+            <TextBlock Text="+1 Min" Foreground="White" />
+        </Button>
         <c:IntegerTextBox 
             x:Name="Hours" 
             Text="00"           
             GotFocus="Hours_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
-            Canvas.Left="53"  
+            Canvas.Left="153"  
             Canvas.Top="50" />
         <TextBlock x:Name="HoursMinutes"
                    FontSize="25"
-                   Foreground="Red"
-                   Canvas.Left="93"
+                   Foreground="#FF00B1FF"
+                   Canvas.Left="193"
                    Canvas.Top="50"                   
                    Text=":" />
         <c:IntegerTextBox 
@@ -28,12 +37,12 @@
             Text="00" 
             GotFocus="Minutes_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
-            Canvas.Left="103" 
+            Canvas.Left="203" 
             Canvas.Top="50" />
         <TextBlock x:Name="MinutesSeconds"
                    FontSize="25"
-                   Foreground="Red"
-                   Canvas.Left="143"
+                   Foreground="#FF00B1FF"
+                   Canvas.Left="243"
                    Canvas.Top="50" 
                    Text=":" />
         <c:IntegerTextBox 
@@ -41,18 +50,18 @@
             Text="00" 
             GotFocus="Seconds_GotFocus"
             Style="{StaticResource CountdownBoxes}" 
-            Canvas.Left="152" 
+            Canvas.Left="252" 
             Canvas.Top="50" />
-        <Button x:Name="Start" Click="Start_Click" Canvas.Left="50" Canvas.Top="100" Width="45">
-            <TextBlock Text="Start" />
+        <Button x:Name="Start" Click="Start_Click" Canvas.Left="150" Canvas.Top="100" Width="45" Style="{StaticResource buttonAddItems}">
+            <TextBlock Text="Start" Foreground="White" />
         </Button>
-        <Button x:Name="Stop" Click="Stop_Click" Canvas.Left="100" Canvas.Top="100" Width="45" IsEnabled="False">
-            <TextBlock Text="Stop" />
+        <Button x:Name="Stop" Click="Stop_Click" Canvas.Left="200" Canvas.Top="100" Width="45" IsEnabled="False" Style="{StaticResource buttonAddItems}">
+            <TextBlock Text="Stop" Foreground="White" />
         </Button>
-        <Button x:Name="Reset" Click="Reset_Click" Canvas.Left="150" Canvas.Top="100" Width="45" IsEnabled="False">
-            <TextBlock Text="Reset" />
+        <Button x:Name="Reset" Click="Reset_Click" Canvas.Left="250" Canvas.Top="100" Width="45" IsEnabled="False" Style="{StaticResource buttonAddItems}">
+            <TextBlock Text="Reset" Foreground="White" />
         </Button>
-        <TextBlock x:Name="ErrorMessage" Text="" Foreground="Red" Canvas.Left="50" Canvas.Top="150" />
+        <TextBlock x:Name="ErrorMessage" Text="" Foreground="Red" Canvas.Left="150" Canvas.Top="150" />
         <MediaElement x:Name="Ring"
                       AutoPlay="False"
                       Source="ring.mp3"                      

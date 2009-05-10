@@ -19,8 +19,8 @@ namespace Com.Hertkorn.OnlineStopwatch
     {
         DispatcherTimer m_requestUpdate = new DispatcherTimer();
         DateTime m_targetDateTime = DateTime.MaxValue;
-        TimeSpan m_initialTimeSpan = TimeSpan.MinValue;
-        TimeSpan m_remainingTimeSpan = TimeSpan.MaxValue;
+        TimeSpan m_initialTimeSpan = TimeSpan.Zero;
+        TimeSpan m_remainingTimeSpan = TimeSpan.Zero;
         bool m_isSet = false;
 
         public Page()
@@ -36,21 +36,24 @@ namespace Com.Hertkorn.OnlineStopwatch
 
         void m_requestUpdate_Tick(object sender, EventArgs e)
         {
-            m_remainingTimeSpan = m_targetDateTime - DateTime.Now;
-
-            if (IsNegative(m_remainingTimeSpan))
+            lock (m_syncLock)
             {
-                m_requestUpdate.Stop();
-                SetUIState();
+                m_remainingTimeSpan = m_targetDateTime - DateTime.Now;
 
-                Ring.Play();
+                if (IsNegative(m_remainingTimeSpan))
+                {
+                    m_requestUpdate.Stop();
+                    SetUIState();
 
-                m_remainingTimeSpan = m_initialTimeSpan;
-                SetUIToTimeSpan(m_initialTimeSpan);
-            }
-            else
-            {
-                SetUIToTimeSpan(m_remainingTimeSpan);
+                    Ring.Play();
+
+                    m_remainingTimeSpan = m_initialTimeSpan;
+                    SetUIToTimeSpan(m_initialTimeSpan);
+                }
+                else
+                {
+                    SetUIToTimeSpan(m_remainingTimeSpan);
+                }
             }
         }
 
@@ -82,7 +85,7 @@ namespace Com.Hertkorn.OnlineStopwatch
         private void SetUIState()
         {
             Ring.Stop();
-            Start.IsEnabled = !m_requestUpdate.IsEnabled;          
+            Start.IsEnabled = !m_requestUpdate.IsEnabled;
             Stop.IsEnabled = m_requestUpdate.IsEnabled;
             Reset.IsEnabled = !m_requestUpdate.IsEnabled;
 
@@ -92,7 +95,7 @@ namespace Com.Hertkorn.OnlineStopwatch
 
             if (!m_requestUpdate.IsEnabled)
             {
-                Start.Focus();               
+                Start.Focus();
             }
             else
             {
@@ -123,8 +126,11 @@ namespace Com.Hertkorn.OnlineStopwatch
                 {
                     try
                     {
-                        m_initialTimeSpan = createTimeSpan();
-                        m_remainingTimeSpan = m_initialTimeSpan;
+                        lock (m_syncLock)
+                        {
+                            m_initialTimeSpan = createTimeSpan();
+                            m_remainingTimeSpan = m_initialTimeSpan;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -173,6 +179,8 @@ namespace Com.Hertkorn.OnlineStopwatch
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
+            m_remainingTimeSpan = TimeSpan.Zero;
+            m_initialTimeSpan = TimeSpan.Zero;
             m_isSet = false;
             SetUIToTimeSpan(TimeSpan.Zero);
         }
@@ -190,6 +198,19 @@ namespace Com.Hertkorn.OnlineStopwatch
         private void Seconds_GotFocus(object sender, RoutedEventArgs e)
         {
             Seconds.SelectAll();
+        }
+
+        private static object m_syncLock = new object();
+        private void PlusOneMinute_Click(object sender, RoutedEventArgs e)
+        {
+            lock (m_syncLock)
+            {
+                m_isSet = true;
+                m_initialTimeSpan = m_initialTimeSpan.Add(new TimeSpan(0, 1, 0));
+                m_remainingTimeSpan = m_remainingTimeSpan.Add(new TimeSpan(0, 1, 0));
+                m_targetDateTime = DateTime.Now.Add(m_remainingTimeSpan);
+                SetUIToTimeSpan(m_remainingTimeSpan);
+            }
         }
     }
 }
