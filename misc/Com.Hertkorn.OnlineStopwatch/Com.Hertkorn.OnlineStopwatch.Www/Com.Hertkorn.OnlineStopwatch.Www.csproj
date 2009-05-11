@@ -55,6 +55,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClientBin\bell.png" />
     <Content Include="ClientBin\Com.Hertkorn.OnlineStopwatch.xap" />
     <None Include="ClientBin\ring.mp3" />
     <Content Include="Com.Hertkorn.OnlineStopwatchTestPage.aspx" />

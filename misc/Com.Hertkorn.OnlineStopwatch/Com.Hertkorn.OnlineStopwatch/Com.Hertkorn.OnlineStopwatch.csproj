@@ -60,7 +60,6 @@
     <Compile Include="Bell.xaml.cs">
       <DependentUpon>Bell.xaml</DependentUpon>
     </Compile>
-    <Resource Include="bell.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnalogClock.xaml.cs">
