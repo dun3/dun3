@@ -46,6 +46,7 @@ namespace Com.Hertkorn.OnlineStopwatch
                     SetUIState();
 
                     Ring.Play();
+                    Bell.StartRing();
 
                     m_remainingTimeSpan = m_initialTimeSpan;
                     SetUIToTimeSpan(m_initialTimeSpan);
@@ -85,6 +86,7 @@ namespace Com.Hertkorn.OnlineStopwatch
         private void SetUIState()
         {
             Ring.Stop();
+            Bell.Reset();
             Start.IsEnabled = !m_requestUpdate.IsEnabled;
             Stop.IsEnabled = m_requestUpdate.IsEnabled;
             Reset.IsEnabled = !m_requestUpdate.IsEnabled;

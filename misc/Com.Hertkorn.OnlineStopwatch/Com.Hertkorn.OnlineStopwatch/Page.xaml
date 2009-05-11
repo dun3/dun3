@@ -62,6 +62,9 @@
             <TextBlock Text="Reset" Foreground="White" />
         </Button>
         <TextBlock x:Name="ErrorMessage" Text="" Foreground="Red" Canvas.Left="150" Canvas.Top="150" />
+        
+        <c:Bell x:Name="Bell" Canvas.Left="280" Canvas.Top="0" />
+        
         <MediaElement x:Name="Ring"
                       AutoPlay="False"
                       Source="ring.mp3"                      

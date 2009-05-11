@@ -53,6 +53,14 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
+    <Page Include="Bell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Bell.xaml.cs">
+      <DependentUpon>Bell.xaml</DependentUpon>
+    </Compile>
+    <Resource Include="bell.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnalogClock.xaml.cs">
