@@ -89,9 +89,9 @@ namespace Com.Hertkorn.OnlineStopwatch
             Stop.IsEnabled = m_requestUpdate.IsEnabled;
             Reset.IsEnabled = !m_requestUpdate.IsEnabled;
 
-            Hours.IsReadOnly = m_requestUpdate.IsEnabled;
-            Minutes.IsReadOnly = m_requestUpdate.IsEnabled;
-            Seconds.IsReadOnly = m_requestUpdate.IsEnabled;
+            Hours.IsReadOnly = m_isSet;
+            Minutes.IsReadOnly = m_isSet;
+            Seconds.IsReadOnly = m_isSet;
 
             if (!m_requestUpdate.IsEnabled)
             {
@@ -183,6 +183,7 @@ namespace Com.Hertkorn.OnlineStopwatch
             m_initialTimeSpan = TimeSpan.Zero;
             m_isSet = false;
             SetUIToTimeSpan(TimeSpan.Zero);
+            SetUIState();
         }
 
         private void Hours_GotFocus(object sender, RoutedEventArgs e)
