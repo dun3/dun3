@@ -27,39 +27,39 @@ namespace FizzBuzz
             output.Last().ShouldEqual("Buzz");
         };
 
-        It should_output_something_containing__Fizz__for_any_items_mod_3 = () =>
+        It should_output__Fizz__for_any_items__mod_3_and_not_mod_5__ = () =>
         {
-            TestForAllItems(i => (i % 3) == 0, item => item.Contains("Fizz").ShouldBeTrue());
+            TestForAllItems(i => ((i % 3) == 0 && (i % 5) != 0), item => item.ShouldEqual("Fizz"));
         };
 
-        It should_not_output_something_containing__Fizz__for_any_items_mod_3 = () =>
+        It should_not_output__Fizz__for_any_items_not__mod_3_and_not_mod_5__ = () =>
         {
-            TestForAllItems(i => (i % 3) != 0, item => item.Contains("Fizz").ShouldBeFalse());
+            TestForAllItems(i => !((i % 3) == 0 && (i % 5) != 0), item => item.ShouldNotEqual("Fizz"));
         };
 
-        It should_output_something_containing__Buzz__for_any_items_mod_5 = () =>
+        It should_output__Buzz__for_any_items__mod_5_and_not_mod_3__ = () =>
         {
-            TestForAllItems(i => (i % 5) == 0, item => item.Contains("Buzz").ShouldBeTrue());
+            TestForAllItems(i => ((i % 5) == 0 && (i % 3) != 0), item => item.ShouldEqual("Buzz"));
         };
 
-        It should_not_output_something_containing__Buzz__for_any_items_mod_5 = () =>
+        It should_not_output__Buzz__for_any_items_not__mod_5_and_not_mod_3__ = () =>
         {
-            TestForAllItems(i => (i % 5) != 0, item => item.Contains("Buzz").ShouldBeFalse());
+            TestForAllItems(i => !((i % 5) == 0 && (i % 3) != 0), item => item.ShouldNotEqual("Buzz"));
         };
 
-        It should_output__FizzBuzz__for_any_items_mod_15 = () =>
+        It should_output__FizzBuzz__for_any_items__mod_15__ = () =>
         {
             TestForAllItems(i => (i % 15) == 0, item => item.ShouldEqual("FizzBuzz"));
         };
 
-        It should_not_output__FizzBuzz__for_any_items_mod_15 = () =>
+        It should_not_output__FizzBuzz__for_any_items_not__mod_15__ = () =>
         {
             TestForAllItems(i => (i % 15) != 0, item => item.ShouldNotEqual("FizzBuzz"));
         };
 
-        It should_output_numbers_for_any_items_not_mod_3_and_not_mod_5 = () =>
+        It should_output_numbers_for_any_items_not__mod_3_or_mod_5__ = () =>
         {
-            TestForAllItems(i => ((i % 3) != 0) && ((i % 5) != 0), (i, item) => item.ShouldEqual(i.ToString()));
+            TestForAllItems(i => !((i % 3) == 0 || (i % 5) == 0), (i, item) => item.ShouldEqual(i.ToString()));
         };
 
         It should_output_100_items = () =>
